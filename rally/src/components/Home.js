@@ -5,8 +5,7 @@ import Tabel from "./Tabel";
 import General_table from "./General_table";
 
 function Home() {
-
-    
+    console.log("Home");
 
     return (
         <div className="Home">
