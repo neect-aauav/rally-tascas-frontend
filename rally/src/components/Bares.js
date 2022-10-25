@@ -2,8 +2,8 @@ import React,{useState,useEffect} from "react";
 import './Bares.css';
 import Navbar from "./Navbar";
 
-
 function Bares() {
+    
     async function getPostos() {
         const response = await fetch("http://localhost:8000/api/bars");
         return await response.json();

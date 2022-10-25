@@ -5,12 +5,9 @@ import {ToastContainer,toast,Zoom,Bounce} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
-    // if (localStorage.getItem("token") != null) {
-    //     window.location.href = "/";
-    // }
-    
+        
     async function getPostos() {
-        const response = await fetch("http://localhost:8000/api/token",
+        const response = await fetch("http://localhost:8000/api/login",
         {
             method: 'POST',
             headers: {
