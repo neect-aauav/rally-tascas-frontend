@@ -15,6 +15,9 @@ function Equipas() {
 
     function writebutton(data,parent){
         if(parent){
+            // remove existing buttons
+            document.querySelectorAll('.buttonbar').forEach(e => e.remove());
+
             data.forEach(button => {
                 const buttonwrapper = document.createElement('div')
                 parent.appendChild(buttonwrapper)

@@ -5,7 +5,7 @@ import {ToastContainer,toast,Zoom,Bounce} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
-        
+
     async function getPostos() {
         const response = await fetch("http://localhost:8000/api/login",
         {
@@ -46,6 +46,9 @@ function Login() {
                 const data = await response.json();
                 //set in local storage data
                 localStorage.setItem('token', data.token);
+                // reset bar for new admin user
+                localStorage.removeItem('bar');
+                
                 window.location.href = "/bares"
         }else{
             console.log("Something went wrong");

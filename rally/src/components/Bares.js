@@ -3,7 +3,7 @@ import './Bares.css';
 import Navbar from "./Navbar";
 
 function Bares() {
-    
+
     async function getPostos() {
         const response = await fetch("http://localhost:8000/api/bars");
         return await response.json();
@@ -12,12 +12,15 @@ function Bares() {
 
     function writebutton(data,parent){
         if(parent){
+            // remove existing buttons
+            document.querySelectorAll('.buttonbar').forEach(e => e.remove());
+
             data.forEach(button => {
                 const buttonwrapper = document.createElement('div')
                 parent.appendChild(buttonwrapper)
                 buttonwrapper.classList.add("buttonbar")
                 buttonwrapper.onclick = () => {
-                    localstor(0, button.name)
+                    localstor(0, button.id)
                     window.location.href = "/equipas";
                 }
                 const h1 = document.createElement('h1')
@@ -33,9 +36,9 @@ function Bares() {
         writebutton(data,document.querySelector("#tabelabares"));
     });
 
-    function localstor(flag,postoname) {
+    function localstor(flag, posto) {
         if (flag === 0) {
-            localStorage.setItem('postoname', postoname);
+            localStorage.setItem('bar', posto);
         }
     }
     
