@@ -42,7 +42,7 @@
 }
 
 .section {
-    padding: 30px 0;
+    padding: 20px 0;
     text-align: center;
 }
 
@@ -50,7 +50,7 @@
     font-size: 30px;
     text-transform: uppercase;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     color: gray;
 }
 
@@ -59,6 +59,11 @@
     flex-direction: row;
     column-gap: 20px;
     align-items: center;
+}
+
+.memberwrapper img {
+    width: 35px;
+    object-fit: cover;
 }
 
 .members-list {
@@ -70,6 +75,14 @@
 .membernames {
     font-size: 30px;
     line-height: 0.8rem;
+    width: 155px;
+    font-size: 30px;
+    line-height: 0.8rem;
+    width: 155px;
+    white-space: nowrap;
+    overflow-x: hidden;
+    padding: 10px 0;
+    text-align: left;
 }
 
 .dropdown {
@@ -92,5 +105,31 @@
     color: white;
     font-size: 20px;
     line-height: 2rem;
-    margin-bottom: 20px;
+    margin: 20px 0;
+}
+
+.egg {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 20px;
+}
+
+.egglost {
+    font-size: 20px;
+    color: silver;
+}
+
+.egg input[type="checkbox"] {
+    scale: 2;
+}
+
+.checkbox-puked {
+    scale: 3;
+}
+
+select {
+    border-radius: 20px;
+    padding: 6px;
+    background-color: white;
 }
