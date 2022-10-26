@@ -57,7 +57,7 @@
     color: white;
     padding: 10px 20px;
     border-radius: 20px;
-    width: 370px;
+    width: 60vw;
     position: relative;
 }
 
@@ -73,7 +73,7 @@
 }
 
 .wrapper img {
-    width: 35px;
+    width: 55px;
     object-fit: cover;
 }
 
@@ -94,6 +94,11 @@
     overflow-x: hidden;
     padding: 10px 0;
     text-align: left;
+}
+.memberinputs {
+    align-items: center;
+    display: flex;
+    column-gap: inherit;
 }
 
 .dropdown {
@@ -165,4 +170,16 @@ input[type="checkbox"]:checked::after {
     font-size: 12px;
     text-align: center;
     border: 1px solid #bfbfbf;
+}
+
+@media screen and (max-width: 550px) {
+    .memberwrapper {
+        flex-direction: column;
+    }
+
+    .memberinputs{
+        flex-direction: row;
+        column-gap: 20px;
+        margin-top: 10px;
+    }
 }

@@ -40,15 +40,19 @@ function Equipa() {
             h1.classList.add('membernames')
             h1.innerText=member.name
             
+            const row = document.createElement('div')
+            memberwrapper.appendChild(row)
+            row.classList.add('memberinputs')
+
             // drink image
             const drink = document.createElement('img')
-            memberwrapper.appendChild(drink)
+            row.appendChild(drink)
             drink.src = SHOT_GLASS;
             drink.title = "Bebidas";
 
             // dropdown with number of drinks
             const dropdown = document.createElement('select')
-            memberwrapper.appendChild(dropdown)
+            row.appendChild(dropdown)
             dropdown.classList.add('dropdown')
             dropdown.id = "drinks_"+member.id
             dropdown.setAttribute('data-drinks', 1);
@@ -62,13 +66,13 @@ function Equipa() {
 
             // puke image
             const puke = document.createElement('img')
-            memberwrapper.appendChild(puke)
+            row.appendChild(puke)
             puke.src = PUKE;
             puke.title = "Vomitou?";
 
             // checkbox to check if puked
             const checkbox = document.createElement('input')
-            memberwrapper.appendChild(checkbox)
+            row.appendChild(checkbox)
             checkbox.type = "checkbox"
             checkbox.id = "puked_"+member.id
             checkbox.classList.add('checkbox-puked')
@@ -202,9 +206,11 @@ function Equipa() {
                 </div>
                 <div className="section egg">
                     <div className="section-title"><img src={EGG}></img>Ovo</div>
+                    
                 </div>
+                <div className="section-title"><img src={MEMBERS}></img>Membros</div>
                 <div className="section members">
-                    <div className="section-title"><img src={MEMBERS}></img>Membros</div>
+                    
                     <div className="members-list"></div>
                 </div>
                 <div className="section game">
