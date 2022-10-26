@@ -1,0 +1,12 @@
+body {
+    overflow-x: hidden;
+    background-color: #E5E5E5;
+}
+
+.Home {
+    padding-top: 170px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    padding-bottom: 30px;
+}

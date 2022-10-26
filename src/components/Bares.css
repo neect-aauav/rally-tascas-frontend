@@ -1,0 +1,63 @@
+.basebares{
+    position: absolute;
+    width: 90vw;
+    height: 55vh;
+    /* center base in the screen */
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+    /* center elements in basetabela */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #F7F7F7;
+    box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 40px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.tabelabares{
+    /* make a grid centered with 1 column */
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    /* center the grid */
+    justify-items: center;
+    align-items: center;
+    /* make the grid responsive */
+    width: 100%;
+    height: 100%;
+    /* center vertically */
+    justify-content: center;
+}
+
+.buttonbar{
+    position: relative;
+    top: 0vh;
+    width: 70vw;
+    height: 4vh;
+    background: #5E69CD;
+    border-radius: 115.5px;
+    cursor: pointer;
+}
+
+.barnames{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    font-size: 1rem;
+    line-height: 0.8rem;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.titulo{
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    top: 24vh;
+    font-weight: 200;
+    font-size: 1.5rem;
+    line-height: 0.8rem;
+    color: #000000;
+    text-align: center;
+}
