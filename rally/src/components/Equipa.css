@@ -89,7 +89,6 @@
     width: 155px;
     font-size: 30px;
     line-height: 0.8rem;
-    width: 155px;
     white-space: nowrap;
     overflow-x: hidden;
     padding: 10px 0;
@@ -181,5 +180,9 @@ input[type="checkbox"]:checked::after {
         flex-direction: row;
         column-gap: 20px;
         margin-top: 10px;
+    }
+    .membernames{
+        width: 60vw;
+        text-align: center;
     }
 }

@@ -3,23 +3,9 @@ import './General_table.css';
 import disableScroll from 'disable-scroll';
 
 function General_table() {
-
-    let persondata = [
-        {name: "Destruidores", p1: 10},
-        {name: "Xupamisto", p1: 20},
-        {name: "Sugamisto", p1: 60},
-        {name: "Hirokumata", p1: 10},
-        {name: "Neect", p1: 50}
-    ];
-    //sort the array persondata by p1 and write the result in a new array
-    let persondata2 = persondata.sort(function(a, b) {
-        return b.p1 - a.p1;
-    });
-    console.log(persondata2);
-
     
     //function to read persondata and write it in the tbody with the id tabledata
-    function writeTable(persondata2) {
+    function writeTable(persondata) {
         const tabledata = document.getElementById("tabledata");
         let tablehtml = "";
         for (let person of persondata) {
@@ -27,12 +13,19 @@ function General_table() {
         }
         tabledata.innerHTML = tablehtml;
     }
-    useEffect(() => {
-    writeTable(persondata);
-    }, []);
+
+    // fetch teams from api
+    getTeams().then((data) => {
+        const teams = data.map(team => ({
+            "name": team.name,
+            "p1": team.points
+        })).sort((a, b) => b.p1 - a.p1);
+
+        writeTable(teams);
+    });
     
     return (
-        <div className="basetabelageral">
+        <div className="table basetabelageral">
             <div className="equipa">Geral</div>
             <table className="styled-table">
                 <thead>
@@ -47,6 +40,12 @@ function General_table() {
             </table>
         </div>
     );
+}
+
+async function getTeams() {
+    const response = await fetch("http://localhost:8000/api/teams");
+    const data = await response.json();
+    return data;
 }
 
 export default General_table;
