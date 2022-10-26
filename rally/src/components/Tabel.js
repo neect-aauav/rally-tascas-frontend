@@ -1,58 +1,155 @@
 import React,{useEffect} from "react";
 import './Tabel.css';
 function Tabel() {
-    let individualdata = [
-        {name: "LF", p1: 10, p2: 20, p3: 30, p4: 40, p5: 50, p6: 60, p7: 70, p8: 80,total:110},
-        {name: "BL", p1: 20, p2: 20, p3: 30, p4: 40, p5: 50, p6: 60, p7: 70, p8: 80,total:120},
-        {name: "ES", p1: 60, p2: 20, p3: 30, p4: 40, p5: 50, p6: 60, p7: 70, p8: 80,total:130},
-        {name: "GT", p1: 10, p2: 20, p3: 30, p4: 40, p5: 50, p6: 60, p7: 70, p8: 80,total:140},
-        {name: "JR", p1: 50, p2: 20, p3: 30, p4: 40, p5: 50, p6: 60, p7: 70, p8: 80,total:150}
-    ];
+   
+    let fetchresult;    
     
-    //sort the array individualdata by total and write the result in a new array
-    let individualdata2 = individualdata.sort(function(a, b) {
-        return b.total - a.total;
-    });
-    console.log(individualdata2);
-    useEffect(() => {
-        writeTable(individualdata2);
-        }, []);
+    function makeTables(data) {
+        if (data) {
+            const home = document.querySelector('.Home')
+            data.forEach(team => {
+                // create table
+                const tablewrapper = document.createElement('div');
+                home.appendChild(tablewrapper);
+                tablewrapper.classList.add('table','basetabela')
+                const title = document.createElement('div');
+                title.classList.add('equipa');
+                title.innerHTML = team.name;
+                tablewrapper.appendChild(title);
+                const table = document.createElement('table');
+                table.classList.add('styled-table');
+                tablewrapper.appendChild(table);
+                const thead = document.createElement('thead');
+                table.appendChild(thead);
+                const trhead = document.createElement('tr');
+                thead.appendChild(trhead);
+                const thname = document.createElement('th');
+                thname.innerHTML = 'Nome';     
+                trhead.appendChild(thname);
+                team.members.forEach((member, i) => {
+                    fetch("http://localhost:8000/api/members/"+member.id)
+                        .then(response => response.json())
+                        .then(member_data => {
+                            //creating headers of the table with bares info and total points
+                            if (i == 0) {
+                                member_data.bars.forEach((_,i) => {
+                                    console.log(i);
+                                    const thbar = document.createElement('th');
+                                    thbar.innerHTML = 'P'+i;
+                                    trhead.appendChild(thbar);
+                                    
+                                }); 
+                                const thtotal = document.createElement('th');
+                                thtotal.innerHTML = 'Total';
+                                trhead.appendChild(thtotal);
+                            } 
     
-    //function to read individualdata and write it in the tbody with the id tabledata
-    function writeTable(individualdata2) {
-        const tabledata = document.getElementById("individualdata");
-        let tablehtml = "";
-        for (let person of individualdata) {
-            tablehtml += `<tr><td>${person.name}</td><td>${person.p1}</td><td>${person.p2}</td><td>${person.p3}</td><td>${person.p4}</td><td>${person.p5}</td><td>${person.p6}</td><td>${person.p7}</td><td>${person.p8}</td><td>${person.total}</td></tr>`;
+                            //create row for each member
+                            const tr = document.createElement('tr');
+                            table.appendChild(tr);
+                            const tdname = document.createElement('td');
+                            tdname.innerHTML = member_data.name;
+                            tr.appendChild(tdname);
+                            member_data.bars.forEach((bar, i) => {
+                                const tdbar = document.createElement('td');
+                                tdbar.innerHTML = bar.points;
+                                tr.appendChild(tdbar);
+                            });
+                            const tdtotal = document.createElement('td');
+                            tdtotal.innerHTML = member_data.points;
+                            tr.appendChild(tdtotal);
+                        });
+                });
+            });
         }
-        tabledata.innerHTML = tablehtml;
     }
+
+    useEffect(() => {
+        makeTables(fetchresult);
+    }, []);
+
+    // infinite loop to fetch data
+    setInterval(() => {
+        fetch("http://localhost:8000/api/teams")
+            .then(response => response.json())
+            .then(data => {
+                fetchresult = data;
+                console.log(fetchresult);
+            });
+    }, 1000);
+
+    // getTeams().then((team_data) => {
+    //     const home = document.querySelector('.Home')
+    //     team_data.forEach(team => {
+    //         // create table
+    //         const tablewrapper = document.createElement('div');
+    //         home.appendChild(tablewrapper);
+    //         tablewrapper.classList.add('table','basetabela')
+    //         const title = document.createElement('div');
+    //         title.classList.add('equipa');
+    //         title.innerHTML = team.name;
+    //         tablewrapper.appendChild(title);
+    //         const table = document.createElement('table');
+    //         table.classList.add('styled-table');
+    //         tablewrapper.appendChild(table);
+    //         const thead = document.createElement('thead');
+    //         table.appendChild(thead);
+    //         const trhead = document.createElement('tr');
+    //         thead.appendChild(trhead);
+    //         const thname = document.createElement('th');
+    //         thname.innerHTML = 'Nome';     
+    //         trhead.appendChild(thname);
+    //         team.members.forEach((member, i) => {
+    //             fetch("http://localhost:8000/api/members/"+member.id)
+    //                 .then(response => response.json())
+    //                 .then(member_data => {
+    //                     //creating headers of the table with bares info and total points
+    //                     if (i == 0) {
+    //                         member_data.bars.forEach((_,i) => {
+    //                             console.log(i);
+    //                             const thbar = document.createElement('th');
+    //                             thbar.innerHTML = 'P'+i;
+    //                             trhead.appendChild(thbar);
+                                
+    //                         }); 
+    //                         const thtotal = document.createElement('th');
+    //                         thtotal.innerHTML = 'Total';
+    //                         trhead.appendChild(thtotal);
+    //                     } 
+
+    //                     //create row for each member
+    //                     const tr = document.createElement('tr');
+    //                     table.appendChild(tr);
+    //                     const tdname = document.createElement('td');
+    //                     tdname.innerHTML = member_data.name;
+    //                     tr.appendChild(tdname);
+    //                     member_data.bars.forEach((bar, i) => {
+    //                         const tdbar = document.createElement('td');
+    //                         tdbar.innerHTML = bar.points;
+    //                         tr.appendChild(tdbar);
+    //                     });
+    //                     const tdtotal = document.createElement('td');
+    //                     tdtotal.innerHTML = member_data.points;
+    //                     tr.appendChild(tdtotal);
+    //                 });
+    //         });
+    //     });
+    // });
     
-    
+
+              
     return (
-        <div className="table basetabela">
-            <div className="equipa">Destruidores</div>
-            <table className="styled-table">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>P1</th>
-                        <th>P2</th>
-                        <th>P3</th>
-                        <th>P4</th>
-                        <th>P5</th>
-                        <th>P6</th>
-                        <th>P7</th>
-                        <th>P8</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody id="individualdata">
-                    
-                </tbody>
-            </table>
+        <div className="tabelaequipa">
+            
         </div>
     );
+}
+
+async function getTeams() {
+    const response = await fetch("http://localhost:8000/api/teams");
+    const data = await response.json();
+    // console.log('tudo',data);
+    return data;
 }
 
 export default Tabel;
