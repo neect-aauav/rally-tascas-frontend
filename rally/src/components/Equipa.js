@@ -141,7 +141,7 @@ function Equipa() {
             });
 
             // get egg
-            const egg = document.querySelector('#egg').checked;
+            const egg = document.querySelector('#egg')?.checked;
 
             const body = {
                 "team_id": id,
@@ -150,7 +150,7 @@ function Equipa() {
                 "points": points,
                 "drinks": drinks_counter,
                 "puked": puke_counter,
-                "has_egg": egg,
+                "has_egg": egg ? true : false,
                 "members": members_values
             };
 

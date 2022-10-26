@@ -1,4 +1,3 @@
-import React,{useEffect, useState} from "react";
 import './Tabel.css';
 function Tabel() {
 
@@ -24,44 +23,78 @@ function Tabel() {
             .then(bars => {
                 const trhead = document.createElement('tr');
                 table.querySelector("thead").appendChild(trhead);
+               
+                // name column
+                const thname = document.createElement('th');
+                thname.innerHTML = "Name";
+                trhead.appendChild(thname);
+
                 bars.forEach((_, i) => {
                     const th = document.createElement('th');
                     trhead.appendChild(th);
                     th.innerHTML = "P"+(i+1);
                 }); 
+
+                // total column
+                const thtotal = document.createElement('th');
+                thtotal.innerHTML = "Total";
+                trhead.appendChild(thtotal);
             });
     }
 
 
     function updateTable(table, team) {
+        const rowUpdates = [];
+        let n_bars, rows;
         team.members.forEach((member, i) => {
-            fetch("http://localhost:8000/api/members/"+member.id)
-                .then(response => response.json())
-                .then(member_data => {
-                    let tr;
-                    // if tr already exists
-                    if ((tr = table.querySelector('tr:nth-child('+(i+2)+')'))) {
-                        member_data.bars.forEach((bar, j) => {
-                            const old = tr.querySelector('td:nth-child('+(j+1)+')');
-                            const td = document.createElement('td');
-                            if (old) tr.replaceChild(td, old);
-                            else tr.appendChild(td);
-                            td.innerHTML = bar.points;
-                        });
-                    }
-                    else {
-                        tr = document.createElement('tr');
-                        table.appendChild(tr);
-                        member_data.bars.forEach((bar, j) => {
-                            const old = tr.querySelector('td:nth-child('+(j+1)+')');
-                            const td = document.createElement('td');
-                            if (old) tr.replaceChild(td, old);
-                            else tr.appendChild(td);
-                            td.innerHTML = bar.points;
-                        });
-                    }
-                });
-        })
+            rowUpdates.push(new Promise((resolve, reject) => {
+                fetch("http://localhost:8000/api/members/"+member.id)
+                    .then(response => response.json())
+                    .then(member_data => {
+                        n_bars = member_data.bars.length;
+                        rows = [];
+
+                        const updateRow = row => {
+
+                            // column swap
+                            const columnSwap = (oldElem, newElem, value) => {
+                                if (oldElem) row.replaceChild(newElem, oldElem);
+                                else row.appendChild(newElem);
+                                newElem.innerHTML = value; 
+                            }
+
+                            // fill name column
+                            columnSwap(row.querySelector("td"), document.createElement('td'), member_data.name);
+
+                            // fill points columns
+                            member_data.bars.forEach((bar, j) => columnSwap(row.querySelector("td:nth-child("+(j+2)+")"), document.createElement('td'), bar.points));
+
+                            // replace old total
+                            columnSwap(row.querySelector("td:nth-child("+(n_bars+2)+")"), document.createElement('td'), member_data.points);                           
+                        }
+
+                        let tr = document.createElement('tr');
+                        updateRow(tr);
+
+                        resolve(tr);
+                    });
+            }));
+
+        });
+
+        // wait for all row updates and sort rows
+        Promise.all(rowUpdates).then(rows => {
+            if (table && rows) {
+                table.querySelectorAll("tr:not(:first-child)").forEach(tr => tr.remove());
+                Array.from(rows)
+                    .sort((a, b) => {
+                        const bTotal = parseInt(b.querySelector("td:last-child")?.innerHTML);
+                        const aTotal = parseInt(a.querySelector("td:last-child")?.innerHTML);
+                        return bTotal - aTotal;
+                    })
+                    .forEach(tr => table.append(tr));
+            }
+        });
     }
 
     getTeams().then(teams => {
@@ -76,126 +109,6 @@ function Tabel() {
             }, 1000);
         });
     });
-
-    function makeTables(data) {
-        if (data) {
-            const home = document.querySelector('.Home')
-            data.forEach(team => {
-                // create table
-                const tablewrapper = document.createElement('div');
-                home.appendChild(tablewrapper);
-                tablewrapper.classList.add('table','basetabela')
-                const title = document.createElement('div');
-                title.classList.add('equipa');
-                title.innerHTML = team.name;
-                tablewrapper.appendChild(title);
-                const table = document.createElement('table');
-                table.classList.add('styled-table');
-                tablewrapper.appendChild(table);
-                const thead = document.createElement('thead');
-                table.appendChild(thead);
-                const trhead = document.createElement('tr');
-                thead.appendChild(trhead);
-                const thname = document.createElement('th');
-                thname.innerHTML = 'Nome';     
-                trhead.appendChild(thname);
-                team.members.forEach((member, i) => {
-                    fetch("http://localhost:8000/api/members/"+member.id)
-                        .then(response => response.json())
-                        .then(member_data => {
-                            //creating headers of the table with bares info and total points
-                            if (i == 0) {
-                                member_data.bars.forEach((_,i) => {
-                                    console.log(i);
-                                    const thbar = document.createElement('th');
-                                    thbar.innerHTML = 'P'+i;
-                                    trhead.appendChild(thbar);
-                                    
-                                }); 
-                                const thtotal = document.createElement('th');
-                                thtotal.innerHTML = 'Total';
-                                trhead.appendChild(thtotal);
-                            } 
-    
-                            //create row for each member
-                            const tr = document.createElement('tr');
-                            table.appendChild(tr);
-                            const tdname = document.createElement('td');
-                            tdname.innerHTML = member_data.name;
-                            tr.appendChild(tdname);
-                            member_data.bars.forEach((bar, i) => {
-                                const tdbar = document.createElement('td');
-                                tdbar.innerHTML = bar.points;
-                                tr.appendChild(tdbar);
-                            });
-                            const tdtotal = document.createElement('td');
-                            tdtotal.innerHTML = member_data.points;
-                            tr.appendChild(tdtotal);
-                        });
-                });
-            });
-        }
-    }
-
-    // getTeams().then((team_data) => {
-    //     const home = document.querySelector('.Home')
-    //     team_data.forEach(team => {
-    //         // create table
-    //         const tablewrapper = document.createElement('div');
-    //         home.appendChild(tablewrapper);
-    //         tablewrapper.classList.add('table','basetabela')
-    //         const title = document.createElement('div');
-    //         title.classList.add('equipa');
-    //         title.innerHTML = team.name;
-    //         tablewrapper.appendChild(title);
-    //         const table = document.createElement('table');
-    //         table.classList.add('styled-table');
-    //         tablewrapper.appendChild(table);
-    //         const thead = document.createElement('thead');
-    //         table.appendChild(thead);
-    //         const trhead = document.createElement('tr');
-    //         thead.appendChild(trhead);
-    //         const thname = document.createElement('th');
-    //         thname.innerHTML = 'Nome';     
-    //         trhead.appendChild(thname);
-    //         team.members.forEach((member, i) => {
-    //             fetch("http://localhost:8000/api/members/"+member.id)
-    //                 .then(response => response.json())
-    //                 .then(member_data => {
-    //                     //creating headers of the table with bares info and total points
-    //                     if (i == 0) {
-    //                         member_data.bars.forEach((_,i) => {
-    //                             console.log(i);
-    //                             const thbar = document.createElement('th');
-    //                             thbar.innerHTML = 'P'+i;
-    //                             trhead.appendChild(thbar);
-                                
-    //                         }); 
-    //                         const thtotal = document.createElement('th');
-    //                         thtotal.innerHTML = 'Total';
-    //                         trhead.appendChild(thtotal);
-    //                     } 
-
-    //                     //create row for each member
-    //                     const tr = document.createElement('tr');
-    //                     table.appendChild(tr);
-    //                     const tdname = document.createElement('td');
-    //                     tdname.innerHTML = member_data.name;
-    //                     tr.appendChild(tdname);
-    //                     member_data.bars.forEach((bar, i) => {
-    //                         const tdbar = document.createElement('td');
-    //                         tdbar.innerHTML = bar.points;
-    //                         tr.appendChild(tdbar);
-    //                     });
-    //                     const tdtotal = document.createElement('td');
-    //                     tdtotal.innerHTML = member_data.points;
-    //                     tr.appendChild(tdtotal);
-    //                 });
-    //         });
-    //     });
-    // });
-    
-
               
     return (
         <div className="tabelaequipa">
