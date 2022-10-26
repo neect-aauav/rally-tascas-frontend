@@ -37,8 +37,7 @@
 
 .logo{
     position: absolute;
-    width: 20vw;
+    width: 100px;
     left: -20vw;
-    top: -1vh;
-    
+    top: -20px;
 }

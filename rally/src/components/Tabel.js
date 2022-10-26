@@ -30,7 +30,7 @@ function Tabel() {
     
     
     return (
-        <div className="basetabela">
+        <div className="table basetabela">
             <div className="equipa">Destruidores</div>
             <table className="styled-table">
                 <thead>
