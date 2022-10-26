@@ -5,6 +5,9 @@ import { useParams } from "react-router-dom";
 
 import SHOT_GLASS from '../images/shot-glass.png';
 import PUKE from '../images/puke.png';
+import EGG from '../images/egg.png';
+import MEMBERS from '../images/members.png';
+import GAME from '../images/game.png';
 
 function Equipa() {
     const drinkPointsValue = 10;
@@ -90,7 +93,7 @@ function Equipa() {
         dropdown.value = 0
 
         // egg wrapper
-        const egg = document.querySelector('.egg');
+        const egg = document.querySelector('.egg .section-title');
 
         // checkbox to check if team has egg still
         if (data.has_egg) {
@@ -112,7 +115,7 @@ function Equipa() {
         // click event listener to send
         document.querySelector('#send').onclick = () => {
             // get total points
-            const points = document.querySelector('points-value').value;
+            const points = parseInt(document.querySelector('.points-value').innerText);
 
             // get drinks from members
             const members = document.querySelectorAll('.memberwrapper');
@@ -123,7 +126,7 @@ function Equipa() {
                 const drinks = parseInt(member.querySelector('.dropdown').value);
                 members_values.push({
                     "id": member_id,
-                    "points": drinks * drinkPointsValue,
+                    "points": (drinks * drinkPointsValue) + parseFloat(document.querySelector(".game .dropdown").value/members.length),
                     "drinks": drinks
                 });
                 
@@ -136,6 +139,17 @@ function Equipa() {
             // get egg
             const egg = document.querySelector('#egg').checked;
 
+            const body = {
+                "team_id": id,
+                "bar_id": localStorage.getItem('bar'),
+                "game_completed": parseInt(document.querySelector(".game > .dropdown").value) > 0,
+                "points": points,
+                "drinks": drinks_counter,
+                "puked": puke_counter,
+                "has_egg": egg,
+                "members": members_values
+            };
+
             // send data
             fetch("http://localhost:8000/api/teamplay", {
                 method: 'POST',
@@ -143,16 +157,7 @@ function Equipa() {
                     'Content-Type': 'application/json',
                     'Authorization': 'Token ' + localStorage.getItem('token')
                 },
-                body: JSON.stringify({
-                    "team_id": id,
-                    "bar_id": localStorage.getItem('bar'),
-                    "game_completed": parseInt(document.querySelector(".game > .dropdown").value) > 0,
-                    "points": points,
-                    "drinks": drinks_counter,
-                    "puked": puke_counter,
-                    "has_ee": egg,
-                    "members": members_values
-                })
+                body: JSON.stringify(body)
             }).then((response) => console.log(response.status));
         }
 
@@ -195,15 +200,15 @@ function Equipa() {
                         <div className="points-text">Pontos</div>
                     </div>
                 </div>
+                <div className="section egg">
+                    <div className="section-title"><img src={EGG}></img>Ovo</div>
+                </div>
                 <div className="section members">
-                    <div className="section-title">Membros</div>
+                    <div className="section-title"><img src={MEMBERS}></img>Membros</div>
                     <div className="members-list"></div>
                 </div>
                 <div className="section game">
-                    <div className="section-title">Pontos ganhos no jogo</div>
-                </div>
-                <div className="section egg">
-                    <div className="section-title">Ovo</div>
+                    <div className="section-title"><img src={GAME}></img>Pontos Jogo</div>
                 </div>
 
                 <div className="button" id="send">Send</div>

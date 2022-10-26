@@ -5,7 +5,6 @@ import disableScroll from 'disable-scroll';
 import {Link} from 'react-router-dom';
 
 function Navbar() {
-    disableScroll.on();
     return (
         <nav>
             <div className="Navbar">

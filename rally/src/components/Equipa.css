@@ -49,9 +49,20 @@
 .section-title {
     font-size: 30px;
     text-transform: uppercase;
-    text-align: center;
     margin-bottom: 1rem;
-    color: gray;
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    background-color: #5E69CD;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    width: 370px;
+    position: relative;
+}
+
+.section-title img {
+    filter: invert();
 }
 
 .memberwrapper {
@@ -61,7 +72,7 @@
     align-items: center;
 }
 
-.memberwrapper img {
+.wrapper img {
     width: 35px;
     object-fit: cover;
 }
@@ -87,6 +98,7 @@
 
 .dropdown {
     font-size: 30px;
+    border: 3px solid #787878;
 }
 
 .memberpoints {
@@ -97,14 +109,15 @@
 .button {
     position: relative;
     top: 0vh;
-    width: 70vw;
-    height: 4vh;
+    width: 20vw;
+    height: 5vh;
     background: #5E69CD;
-    border-radius: 115.5px;
+    border-radius: 20px;
     cursor: pointer;
     color: white;
     font-size: 20px;
-    line-height: 2rem;
+    line-height: 2.9rem;
+    font-weight: bold;
     margin: 20px 0;
 }
 
@@ -112,7 +125,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    column-gap: 20px;
+    column-gap: 40px;
 }
 
 .egglost {
@@ -120,8 +133,14 @@
     color: silver;
 }
 
-.egg input[type="checkbox"] {
-    scale: 2;
+.section-title input[type="checkbox"] {
+    scale: 3;
+    position: absolute;
+    right: 30px;
+}
+
+.section-title input[type="checkbox"]:checked::after {
+    border: 1px solid white;
 }
 
 .checkbox-puked {
@@ -132,4 +151,18 @@ select {
     border-radius: 20px;
     padding: 6px;
     background-color: white;
+}
+
+input[type="checkbox"]:checked::after {
+    content: '✔';
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    border-radius: 2px;
+    background-color: #5c5c5c;
+    color: white;
+    line-height: 1;
+    font-size: 12px;
+    text-align: center;
+    border: 1px solid #bfbfbf;
 }
