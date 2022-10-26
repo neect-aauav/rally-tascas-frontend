@@ -11,7 +11,7 @@ function Home() {
     return (
         <div className="Home">
             <Navbar />
-            <General_table />
+            {/* <General_table /> */}
             <Tabel />
         </div>
     );

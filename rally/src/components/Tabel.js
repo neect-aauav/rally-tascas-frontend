@@ -1,9 +1,82 @@
-import React,{useEffect} from "react";
+import React,{useEffect, useState} from "react";
 import './Tabel.css';
 function Tabel() {
-   
-    let fetchresult;    
-    
+
+    function createTable(wrapper, team) {
+        const tablewrapper = document.createElement('div');
+        wrapper.appendChild(tablewrapper);
+        tablewrapper.classList.add('table','basetabela')
+        const title = document.createElement('div');
+        title.classList.add('equipa');
+        title.innerHTML = team.name;
+        tablewrapper.appendChild(title);
+        const table = document.createElement('table');
+        table.classList.add('styled-table');
+        tablewrapper.appendChild(table);
+        const thead = document.createElement('thead');
+        table.appendChild(thead);
+        return table;
+    }
+
+    function fillTableHead(table) {
+        fetch("http://localhost:8000/api/bars")
+            .then(response => response.json())
+            .then(bars => {
+                const trhead = document.createElement('tr');
+                table.querySelector("thead").appendChild(trhead);
+                bars.forEach((_, i) => {
+                    const th = document.createElement('th');
+                    trhead.appendChild(th);
+                    th.innerHTML = "P"+(i+1);
+                }); 
+            });
+    }
+
+
+    function updateTable(table, team) {
+        team.members.forEach((member, i) => {
+            fetch("http://localhost:8000/api/members/"+member.id)
+                .then(response => response.json())
+                .then(member_data => {
+                    let tr;
+                    // if tr already exists
+                    if ((tr = table.querySelector('tr:nth-child('+(i+2)+')'))) {
+                        member_data.bars.forEach((bar, j) => {
+                            const old = tr.querySelector('td:nth-child('+(j+1)+')');
+                            const td = document.createElement('td');
+                            if (old) tr.replaceChild(td, old);
+                            else tr.appendChild(td);
+                            td.innerHTML = bar.points;
+                        });
+                    }
+                    else {
+                        tr = document.createElement('tr');
+                        table.appendChild(tr);
+                        member_data.bars.forEach((bar, j) => {
+                            const old = tr.querySelector('td:nth-child('+(j+1)+')');
+                            const td = document.createElement('td');
+                            if (old) tr.replaceChild(td, old);
+                            else tr.appendChild(td);
+                            td.innerHTML = bar.points;
+                        });
+                    }
+                });
+        })
+    }
+
+    getTeams().then(teams => {
+        teams.forEach(team => {
+            const home = document.querySelector(".Home");
+            const table = createTable(home, team);
+            fillTableHead(table);
+
+            // continously update members rows
+            setInterval(() => {
+                updateTable(table, team);
+            }, 1000);
+        });
+    });
+
     function makeTables(data) {
         if (data) {
             const home = document.querySelector('.Home')
@@ -63,20 +136,6 @@ function Tabel() {
             });
         }
     }
-
-    useEffect(() => {
-        makeTables(fetchresult);
-    }, []);
-
-    // infinite loop to fetch data
-    setInterval(() => {
-        fetch("http://localhost:8000/api/teams")
-            .then(response => response.json())
-            .then(data => {
-                fetchresult = data;
-                console.log(fetchresult);
-            });
-    }, 1000);
 
     // getTeams().then((team_data) => {
     //     const home = document.querySelector('.Home')
