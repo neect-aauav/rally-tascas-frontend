@@ -1,4 +1,4 @@
-import './Tabel.css';
+import './Table.css';
 function Tabel() {
 
     function createTable(wrapper, team) {

@@ -12,6 +12,12 @@
 .table>div:first-child {
     font-size: 25px;
     padding: 10px;
+    padding: 10px 0;
+    background-color: #5E69CD;
+    color: white;
+    width: 100%;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
 }
 
 /* Default table styles for this demo */
@@ -34,4 +40,11 @@ table th, table td {
 }
 table th{
     color: #9B9999;
+}
+
+.loading {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    right: 0;
 }

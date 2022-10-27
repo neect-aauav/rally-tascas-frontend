@@ -1,8 +1,8 @@
 import React from "react";
 import './Home.css';
-import './Tables.css';
+import './Table.css';
 import Navbar from "./Navbar";
-import Tabel from "./Tabel";
+import Table from "./Table";
 import General_table from "./General_table";
 
 function Home() {
@@ -12,7 +12,7 @@ function Home() {
         <div className="Home">
             <Navbar />
             {/* <General_table /> */}
-            <Tabel />
+            <Table />
         </div>
     );
 }
