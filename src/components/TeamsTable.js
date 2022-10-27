@@ -12,7 +12,7 @@ function TeamsTable() {
             const setupTables = teams.map(team => {
                 return(new Promise((resolve, reject) => {
                     const home = document.querySelector("#teams-tables");
-                    const table = createTable(home, team.name);
+                    const table = createTable(home, "Loading...");
                     tables.push(table);
     
                     fetch(API_URL+"/api/bars")
@@ -41,6 +41,7 @@ function TeamsTable() {
                             // remove loading
                             tables.forEach(table => table.querySelector(".loading")?.remove());
     
+                            teams.forEach(teams => console.log(teams));
                             teams.forEach((team, i) => {
                                 updateTable(tables[i], team);
                             });
@@ -71,6 +72,9 @@ function updateTable(table, team) {
         else row.appendChild(newElem);
         newElem.innerHTML = value; 
     }
+
+    // update table name
+    table.parentElement.querySelector(".equipa").innerHTML = team.team;
 
     team.members.forEach((member, i) => {
         // fill row with member data

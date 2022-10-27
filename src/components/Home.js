@@ -10,6 +10,7 @@ function Home() {
         <div className="Home">
             <Navbar />
             <GeneralTable />
+            <div className="separator"></div>
             <TeamsTable />
         </div>
     );

@@ -20,13 +20,22 @@
     border-top-right-radius: 40px;
 }
 
+.table td:first-child {
+    padding: 10px;
+    white-space: nowrap;
+}
+
+.table tr:nth-child(2) {
+    background-color: rgb(132, 253, 186);
+    position: relative;
+}
+
 /* Default table styles for this demo */
 table {
     position: relative;
     border-collapse: collapse;
     text-align: center;
     width: 100%;
-    top: 1vh;
 }
 table tr {
     background: #F7F7F7;
@@ -38,8 +47,10 @@ table th, table td {
     width: 0%;
 
 }
-table th{
-    color: #9B9999;
+table th {
+    border-top: 2px solid white;
+    background-color: #5E69CD;
+    color: white !important;
 }
 
 .loading {

@@ -4,7 +4,7 @@ body {
 }
 
 .Home {
-    padding-top: 170px;
+    padding-top: 90px;
     display: flex;
     flex-direction: column;
     row-gap: 30px;
@@ -15,4 +15,11 @@ body {
     display: flex;
     flex-direction: column;
     row-gap: 30px;
+}
+
+.separator {
+    height: 1px;
+    width: 80%;
+    background-color: silver;
+    margin: auto;
 }

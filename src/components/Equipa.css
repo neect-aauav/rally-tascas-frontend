@@ -24,17 +24,24 @@
     flex-direction: row;
     column-gap: 20px;
     padding-left: 40px;
+    background-color: #5E69CD;
+    color: white;
+    border-radius: 20px;
+}
+#total-points img {
+    filter: invert(1);
 }
 
 .points {
     display: flex;
     flex-direction: row;
     column-gap: 5px;
+    font-size: 20px;
 }
 
 .team-name {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 35px;
 }
 
 #equipa {
@@ -120,7 +127,7 @@
     cursor: pointer;
     color: white;
     font-size: 20px;
-    line-height: 2.9rem;
+    line-height: 2.5rem;
     font-weight: bold;
     margin: 20px 0;
 }

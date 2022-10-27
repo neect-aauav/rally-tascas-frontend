@@ -1,43 +1,30 @@
 .Navbar{
-    position: absolute;
-    width: 84vw;
-    height: 6vh;
-    /* right: -3vh; */
-    left: 22vw;
-    top: 8vh;
     background: #5E69CD;
-    border-radius:115.5px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    padding: 1 2vw;
-}
-.home-text{
-    font-family: 'Poppins', sans-serif;
-    font-weight: 200;
-    font-size: 1rem;
-    line-height: 2.25rem;
-    color: #FFFFFF;
+    top: 0;
+    position: absolute;
+    right: 0;
+    width: 430px;
+    border-bottom-left-radius: 30px;
 }
 
-.Bares-text{
+.Navbar h1 {
     font-family: 'Poppins', sans-serif;
     font-weight: 200;
-    font-size: 1rem;
-    line-height: 2.25rem;
-    color: #FFFFFF;
-}
-.Premios-text{
-    font-family: 'Poppins', sans-serif;
-    font-weight: 200;
-    font-size: 1rem;
+    font-size: 25px;
     line-height: 2.25rem;
     color: #FFFFFF;
 }
 
 .logo{
+    width: 90px;
     position: absolute;
-    width: 100px;
-    left: -20vw;
-    top: -20px;
+    left: -110px;
+    top: 0px;
+}
+
+a {
+    text-decoration: none;
 }
