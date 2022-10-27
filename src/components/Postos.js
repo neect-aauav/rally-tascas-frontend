@@ -31,7 +31,7 @@ function Postos() {
 
     
     async function getPostos() {
-        const response = await fetch("http://localhost:8000/api/bars");
+        const response = await fetch("https://rally-api.herokuapp.com/api/bars");
         const data = await response.json();
         console.log(data);
         //read data[0].latitude to inside a string

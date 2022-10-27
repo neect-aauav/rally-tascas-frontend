@@ -155,7 +155,7 @@ function Equipa() {
             };
 
             // send data
-            fetch("http://localhost:8000/api/teamplay", {
+            fetch("https://rally-api.herokuapp.com/api/teamplay", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -225,7 +225,7 @@ function Equipa() {
 
 
 async function getTeam(id) {
-    const response = await fetch("http://localhost:8000/api/teams/"+id, {
+    const response = await fetch("https://rally-api.herokuapp.com/api/teams/"+id, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

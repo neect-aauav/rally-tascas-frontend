@@ -40,7 +40,7 @@ const checkSession = notApplicablePaths => {
     console.log(token);
     if (token) {
         // check if token is valid
-        fetch('http://localhost:3001/api/token', {
+        fetch('https://rally-api.herokuapp.com/api/token', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

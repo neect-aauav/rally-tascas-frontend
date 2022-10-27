@@ -5,7 +5,7 @@ import Navbar from "./Navbar";
 function Bares() {
 
     async function getPostos() {
-        const response = await fetch("http://localhost:8000/api/bars");
+        const response = await fetch("https://rally-api.herokuapp.com/api/bars");
         return await response.json();
     }
     

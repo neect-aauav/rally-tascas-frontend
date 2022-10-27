@@ -18,7 +18,7 @@ function Tabel() {
     }
 
     function fillTableHead(table) {
-        return(fetch("http://localhost:8000/api/bars")
+        return(fetch("https://rally-api.herokuapp.com/api/bars")
             .then(response => response.json())
             .then(bars => {
                 const trhead = document.createElement('tr');
@@ -48,7 +48,7 @@ function Tabel() {
         let n_bars, rows;
         team.members.forEach((member, i) => {
             rowUpdates.push(new Promise((resolve, reject) => {
-                fetch("http://localhost:8000/api/members/"+member.id)
+                fetch("https://rally-api.herokuapp.com/api/members/"+member.id)
                     .then(response => response.json())
                     .then(member_data => {
                         n_bars = member_data.bars.length;
@@ -131,7 +131,7 @@ function Tabel() {
 }
 
 async function getTeams() {
-    const response = await fetch("http://localhost:8000/api/teams");
+    const response = await fetch("https://rally-api.herokuapp.com/api/teams");
     const data = await response.json();
     // console.log('tudo',data);
     return data;

@@ -43,7 +43,7 @@ function General_table() {
 }
 
 async function getTeams() {
-    const response = await fetch("http://localhost:8000/api/teams");
+    const response = await fetch("https://rally-api.herokuapp.com/api/teams");
     const data = await response.json();
     return data;
 }

@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 function Login() {
 
     async function getPostos() {
-        const response = await fetch("http://localhost:8000/api/login",
+        const response = await fetch("https://rally-api.herokuapp.com/api/login",
         {
             method: 'POST',
             headers: {

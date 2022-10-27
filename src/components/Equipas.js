@@ -7,7 +7,7 @@ function Equipas() {
 
 
     async function getPostos() {
-        const response = await fetch("http://localhost:8000/api/teams");
+        const response = await fetch("https://rally-api.herokuapp.com/api/teams");
         const data = await response.json();
         // console.log(data);
         return data;
