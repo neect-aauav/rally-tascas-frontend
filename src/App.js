@@ -9,7 +9,7 @@ import Bares from './components/Bares';
 import Equipas from './components/Equipas';
 import Equipa from './components/Equipa';
 
-const API_URL = process.env.API_URL ? process.env.API_URL : "http://localhost:8000";
+const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "http://127.0.0.1:8000";
 
 // force https
 if (window.location.protocol != "https:" && window.location.hostname != "localhost")
