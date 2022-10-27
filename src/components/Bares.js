@@ -2,10 +2,12 @@ import React,{useState,useEffect} from "react";
 import './Bares.css';
 import Navbar from "./Navbar";
 
+const API_URL = process.env.API_URL ? process.env.API_URL : "http://127.0.0.1:8000";
+
 function Bares() {
 
     async function getPostos() {
-        const response = await fetch("https://rally-api.herokuapp.com/api/bars");
+        const response = await fetch(API_URL+"/api/bars");
         return await response.json();
     }
     
@@ -21,7 +23,7 @@ function Bares() {
                 buttonwrapper.classList.add("buttonbar")
                 buttonwrapper.onclick = () => {
                     localstor(0, button.id)
-                    window.location.href = "/equipas";
+                    window.location.href = "/admin/equipas";
                 }
                 const h1 = document.createElement('h1')
                 buttonwrapper.appendChild(h1)

@@ -9,6 +9,8 @@ import Bares from './components/Bares';
 import Equipas from './components/Equipas';
 import Equipa from './components/Equipa';
 
+const API_URL = process.env.API_URL ? process.env.API_URL : "http://localhost:8000";
+
 // force https
 if (window.location.protocol != "https:" && window.location.hostname != "localhost")
   window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
@@ -16,7 +18,7 @@ if (window.location.protocol != "https:" && window.location.hostname != "localho
 function App() {
 
   checkSession(['/login']);
-  checkBar(['/login', '/bares']);
+  checkBar(['/login', '/admin/bares']);
 
   return (
     <div className="App">
@@ -26,9 +28,9 @@ function App() {
           <Route  path="/login" element={<Login/>} />
           <Route  path="/postos" element={<Postos/>} />
           <Route  path="/premios" element={<Premios/>} />
-          <Route  path="/bares" element={<Bares/>} />
-          <Route  path="/equipas" element={<Equipas/>} />
-          <Route  path="/equipas/:id" element={<Equipa/>} />
+          <Route  path="/admin/bares" element={<Bares/>} />
+          <Route  path="/admin/equipas" element={<Equipas/>} />
+          <Route  path="/admin/equipas/:id" element={<Equipa/>} />
         </Routes>
       </Router>
     </div>
@@ -38,13 +40,12 @@ function App() {
 // check authentication token validity
 // pass not applicable paths as an array
 const checkSession = notApplicablePaths => {
-  if (!notApplicablePaths.includes(window.location.pathname)) {
+  if (!notApplicablePaths.includes(window.location.pathname) && window.location.pathname.includes('/admin')) {
 
     const token = localStorage.getItem('token');
-    console.log(token);
     if (token) {
         // check if token is valid
-        fetch('https://rally-api.herokuapp.com/api/token', {
+        fetch(API_URL+'/api/token', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -67,9 +68,9 @@ const checkSession = notApplicablePaths => {
 // check if bar is selected
 // pass not applicable paths as an array
 const checkBar = notApplicablePaths => {
-  if (!notApplicablePaths.includes(window.location.pathname)) {
+  if (!notApplicablePaths.includes(window.location.pathname) && window.location.pathname.includes('/admin')) {
     if (!localStorage.getItem('bar')) {
-      window.location.href = '/bares';
+      window.location.href = '/admin/bares';
     }
   }
 }

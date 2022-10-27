@@ -1,4 +1,3 @@
-import React,{useState,useEffect} from "react";
 import './Equipa.css';
 import Navbar from "./Navbar";
 import { useParams } from "react-router-dom";
@@ -9,6 +8,8 @@ import EGG from '../images/egg.png';
 import MEMBERS from '../images/members.png';
 import GAME from '../images/game.png';
 
+const API_URL = process.env.API_URL ? process.env.API_URL : "http://127.0.0.1:8000";
+    
 function Equipa() {
     const drinkPointsValue = 10;
 
@@ -155,7 +156,7 @@ function Equipa() {
             };
 
             // send data
-            fetch("https://rally-api.herokuapp.com/api/teamplay", {
+            fetch(API_URL+"/api/teamplay", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -225,7 +226,7 @@ function Equipa() {
 
 
 async function getTeam(id) {
-    const response = await fetch("https://rally-api.herokuapp.com/api/teams/"+id, {
+    const response = await fetch(API_URL+"/api/teams/"+id, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

@@ -4,10 +4,12 @@ import Navbar from "./Navbar";
 import {ToastContainer,toast,Zoom,Bounce} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const API_URL = process.env.API_URL ? process.env.API_URL : "http://127.0.0.1:8000";
+
 function Login() {
 
     async function getPostos() {
-        const response = await fetch("https://rally-api.herokuapp.com/api/login",
+        const response = await fetch(API_URL+"/api/login",
         {
             method: 'POST',
             headers: {
@@ -20,7 +22,7 @@ function Login() {
         });
         if (response.status === 400) {
             console.log("Wrong username or password");
-            toast.error('🐂 Caa Burro!', {
+            toast.error('Password incorreta! Tenta outra vez.', {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -32,7 +34,7 @@ function Login() {
                 });
         }else if (response.status === 200) {
             console.log("Login successful");
-            toast.success('Éss bue smart!', {
+            toast.success('Login feito com sucesso!', {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -49,7 +51,7 @@ function Login() {
                 // reset bar for new admin user
                 localStorage.removeItem('bar');
                 
-                window.location.href = "/bares"
+                window.location.href = "/admin/bares"
         }else{
             console.log("Something went wrong");
         }

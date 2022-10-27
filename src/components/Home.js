@@ -2,17 +2,15 @@ import React from "react";
 import './Home.css';
 import './Table.css';
 import Navbar from "./Navbar";
-import Table from "./Table";
-import General_table from "./General_table";
+import GeneralTable from "./GeneralTable";
+import TeamsTable from "./TeamsTable";
 
 function Home() {
-    console.log("Home");
-
     return (
         <div className="Home">
             <Navbar />
-            {/* <General_table /> */}
-            <Table />
+            <GeneralTable />
+            <TeamsTable />
         </div>
     );
 }

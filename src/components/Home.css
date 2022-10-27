@@ -10,3 +10,9 @@ body {
     row-gap: 30px;
     padding-bottom: 30px;
 }
+
+.Home > div {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
