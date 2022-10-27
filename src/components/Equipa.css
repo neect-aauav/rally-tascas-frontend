@@ -1,5 +1,11 @@
-.container {
-    margin-top: 275px;
+body {
+    overflow-x: hidden;
+    background-color: #E5E5E5;
+}
+
+.team-container {
+    margin-top: 100px;
+    padding-bottom: 100px;
 }
 
 .wrapper {
@@ -129,7 +135,7 @@
     font-size: 20px;
     line-height: 2.5rem;
     font-weight: bold;
-    margin: 20px 0;
+    margin-bottom: 20px
 }
 
 .egg {
@@ -178,7 +184,11 @@ input[type="checkbox"]:checked::after {
     border: 1px solid #bfbfbf;
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 570px) {
+    .team-container * {
+        font-size: 20px !important;
+    }
+
     .memberwrapper {
         flex-direction: column;
     }
@@ -191,5 +201,35 @@ input[type="checkbox"]:checked::after {
     .membernames{
         width: 60vw;
         text-align: center;
+        font-size: 30px !important;
+        overflow-y: hidden;
     }
+
+    .section-title {
+        margin-bottom: 0;
+    }
+
+    .members {
+        padding: 10px 0;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .team-container {
+        margin-top: 80px;
+    }
+
+    
+    #total-points {
+        top: -65px;
+    }
+
+    #total-points img {
+        width: 35px;
+    }
+
+    .points-text {
+        display: none;
+    }
+    
 }

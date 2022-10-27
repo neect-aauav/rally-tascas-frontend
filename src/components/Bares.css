@@ -1,27 +1,21 @@
-.basebares{
-    position: absolute;
-    width: 90vw;
-    height: 55vh;
-    /* center base in the screen */
-    left: 50%;
-    top: 60%;
-    transform: translate(-50%, -50%);
-    /* center elements in basetabela */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: #F7F7F7;
-    box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.1);
-    border-radius: 40px;
-    overflow-y: hidden;
+body {
     overflow-x: hidden;
+    background-color: #E5E5E5;
+}
+
+.basebares{
+    border-radius: 30px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    width: 75vw;
+    margin: auto;
+    padding-bottom: 60px;
 }
 
 .tabelabares{
     /* make a grid centered with 1 column */
     display: flex;
     flex-direction: column;
-    row-gap: 15px;
+    row-gap: 10px;
     /* center the grid */
     justify-items: center;
     align-items: center;
@@ -34,30 +28,23 @@
 
 .buttonbar{
     position: relative;
-    top: 0vh;
-    width: 70vw;
-    height: 4vh;
     background: #5E69CD;
-    border-radius: 115.5px;
     cursor: pointer;
+    border-radius: 0px !important;
+    padding: 10px 20px;
+    width: 100%;
+    color: white;
+    font-size: 10px;
 }
 
-.barnames{
-    font-family: 'Poppins', sans-serif;
-    font-weight: 200;
-    font-size: 1rem;
-    line-height: 0.8rem;
-    color: #FFFFFF;
-    text-align: center;
+.buttonbar:hover {
+    background: #838cdd;
 }
 
 .titulo{
-    font-family: 'Poppins', sans-serif;
-    position: relative;
-    top: 24vh;
-    font-weight: 200;
     font-size: 1.5rem;
     line-height: 0.8rem;
     color: #000000;
     text-align: center;
+    margin-bottom: 20px;
 }

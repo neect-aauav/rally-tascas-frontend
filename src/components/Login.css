@@ -1,50 +1,38 @@
-.formulario{
-  position: relative;
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-}
-
-.username{
+.login {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 60vw;
-
-  border: none;
-  border-bottom: 2px solid #5E69CD;
-background: #E5E5E5;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
 }
 
-.login{
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 60vw;
+.login > h1 {
+  font-size: 45px;
 }
 
-.password{
-    position: absolute;
-    left: 50%;
-    top: 180%;
-    transform: translate(-50%, -50%);
-    width: 60vw;
-  
-    border: none;
-    border-bottom: 2px solid #5E69CD;
-  background: #E5E5E5;
-  }
+.login .formulario {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
 
-  .login-button{
-    position: absolute;
-    left: 50%;
-    top: 350%;
-    transform: translate(-50%, -50%);
-    width: 60vw;
-    height: 5vh;
-    background: #5E69CD;
-    border-radius: 10px;
-    color: white;
-  }
+.login .formulario input {
+  width: 300px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid #a9a9a9;
+  padding: 0 10px;
+}
+
+.login .formulario button {
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid #a9a9a9;
+  background-color: #5E69CD;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}

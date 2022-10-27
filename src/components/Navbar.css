@@ -1,28 +1,41 @@
 .Navbar{
+    z-index: 10;
     background: #5E69CD;
     display: flex;
-    justify-content: space-evenly;
     align-items: center;
-    top: 0;
-    position: absolute;
+    bottom: 0;
+    position: fixed;
     right: 0;
-    width: 430px;
-    border-bottom-left-radius: 30px;
+    width: 100%;
+    border-top: 4px solid white;
+}
+
+.Navbar > a:not(.logo) {
+    padding: 0 20px;
 }
 
 .Navbar h1 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 200;
-    font-size: 25px;
+    font-size: 18px;
     line-height: 2.25rem;
     color: #FFFFFF;
 }
 
 .logo{
-    width: 90px;
     position: absolute;
-    left: -110px;
-    top: 0px;
+    right: 20px;
+    -webkit-filter: drop-shadow(2px 2px 0 white)
+                drop-shadow(-2px 2px 0 white)
+                drop-shadow(2px -2px 0 white)
+                drop-shadow(-2px -2px 0 white);
+
+    filter: drop-shadow(2px 2px 0 white)
+            drop-shadow(-2px 2px 0 white)
+            drop-shadow(2px -2px 0 white)
+            drop-shadow(-2px -2px 0 white);
+}
+
+.logo img {
+    width: 50px;
 }
 
 a {

@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from "react";
-import './Equipas.css';
+import './Bares.css';
 import Navbar from "./Navbar";
 
 const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "http://127.0.0.1:8000";
@@ -50,7 +50,7 @@ function Equipas() {
             <Navbar />
             <h1 className="titulo1">Escolhe a equipa</h1>
             <div className="basebares">
-                <div className="tabelaequipas" id="tabelaequipas">
+                <div className="tabelabares" id="tabelaequipas">
                     
                 </div>
             </div>

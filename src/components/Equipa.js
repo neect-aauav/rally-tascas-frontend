@@ -202,7 +202,7 @@ function Equipa() {
     });
 
     return(
-        <div className="container">
+        <div className="team-container">
             <Navbar />
             <div className="wrapper" id="equipa">
                 <div className="wrapper" id="total-points">

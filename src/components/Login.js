@@ -56,34 +56,43 @@ function Login() {
             console.log("Something went wrong");
         }
     }
+
+    // enter key press event
+    useEffect(() => {
+        document.addEventListener("keydown", function(event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                document.querySelector(".login-button").click();
+            }
+        });
+    }, []);
         
-        return (
-            <div className="Login">
-                <Navbar />
-                <ToastContainer
-                    position="top-right"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    theme="dark"
-                />
-                {/* create login with username and password inputs */}
-                <div className="login">
-                    <h1>Login</h1>
-                    <div className="formulario">
-                            <input type="text" id="username" name="username" placeholder="Username" className="username"/>
-                            <input type="password" id="password" name="password" placeholder="Password" className="password"/>
-                    <div/>
+    return (
+        <div className="Login">
+            <Navbar />
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+            />
+            {/* create login with username and password inputs */}
+            <div className="login">
+                <h1>Admin</h1>
+                <div className="formulario">
+                    <input type="text" id="username" name="username" placeholder="Username" className="username"/>
+                    <input type="password" id="password" name="password" placeholder="Password" className="password"/>
                     <button className="login-button" onClick={getPostos}>Login</button>
                 </div>
             </div>
-            </div>
-        );
-    }
+        </div>
+    );  
+}
 
 export default Login;

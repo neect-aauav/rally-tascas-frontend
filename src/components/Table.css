@@ -6,7 +6,7 @@
     box-shadow: 5px 5px 10px 5px rgb(0 0 0 / 10%);
     border-radius: 40px;
     margin: 0px 30px;
-    padding-bottom: 50px;
+    padding-bottom: 35px;
 }
 
 .table>div:first-child {
@@ -23,6 +23,7 @@
 .table td:first-child {
     padding: 10px;
     white-space: nowrap;
+    text-align: left;
 }
 
 .table tr:nth-child(2) {

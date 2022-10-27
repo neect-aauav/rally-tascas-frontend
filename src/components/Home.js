@@ -9,9 +9,11 @@ function Home() {
     return (
         <div className="Home">
             <Navbar />
-            <GeneralTable />
-            <div className="separator"></div>
-            <TeamsTable />
+            <div class="home-container">
+                <GeneralTable />
+                <div className="separator"></div>
+                <TeamsTable />
+            </div>
         </div>
     );
 }

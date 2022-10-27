@@ -3,15 +3,15 @@ body {
     background-color: #E5E5E5;
 }
 
-.Home {
-    padding-top: 90px;
+.home-container {
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     row-gap: 30px;
-    padding-bottom: 30px;
+    padding-bottom: 80px;
 }
 
-.Home > div {
+.home-container > div {
     display: flex;
     flex-direction: column;
     row-gap: 30px;
@@ -22,4 +22,20 @@ body {
     width: 80%;
     background-color: silver;
     margin: auto;
+}
+
+@media screen and (max-width: 500px) {
+
+
+    .home-container * {
+        font-size: 13px !important;
+    }
+
+    .separator {
+        width: 100%;
+    }
+    
+    .equipa {
+        font-size: 20px !important;
+    }
 }
