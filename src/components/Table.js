@@ -18,7 +18,7 @@ function Table() {
     }
 
     function fillTableHead(table) {
-        return(fetch("http://localhost:8000/api/bars")
+        return(fetch("https://rally-api.herokuapp.com/api/bars")
             .then(response => response.json())
             .then(bars => {
                 const trhead = document.createElement('tr');
@@ -88,7 +88,7 @@ function Table() {
         Promise.all(setupTables).then(tables => {
             // continously update members rows
             setInterval(() => {
-                fetch("http://localhost:8000/api/scoreboard/members/all")
+                fetch("https://rally-api.herokuapp.com/api/scoreboard/members/all")
                     .then(response => response.json())
                     .then(teams => {
                         // remove loading
@@ -110,7 +110,7 @@ function Table() {
 }
 
 async function getTeams() {
-    const response = await fetch("http://localhost:8000/api/teams");
+    const response = await fetch("https://rally-api.herokuapp.com/api/teams");
     const data = await response.json();
     return data;
 }
