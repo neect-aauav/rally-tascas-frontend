@@ -8,6 +8,7 @@ import Login from './components/Login';
 import Bares from './components/Bares';
 import Equipas from './components/Equipas';
 import Equipa from './components/Equipa';
+import QRCodeReader from './components/QRCodeReader';
 
 const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "http://127.0.0.1:8000";
 
@@ -28,6 +29,7 @@ function App() {
           <Route  path="/login" element={<Login/>} />
           <Route  path="/postos" element={<Postos/>} />
           <Route  path="/premios" element={<Premios/>} />
+          <Route  path="/admin/qrcode" element={<QRCodeReader/>} />
           <Route  path="/admin/bares" element={<Bares/>} />
           <Route  path="/admin/equipas" element={<Equipas/>} />
           <Route  path="/admin/equipas/:id" element={<Equipa/>} />
