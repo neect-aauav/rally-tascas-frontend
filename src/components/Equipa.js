@@ -162,7 +162,7 @@ function Equipa() {
                     'Authorization': 'Token ' + localStorage.getItem('token')
                 },
                 body: JSON.stringify(body)
-            }).then((response) => console.log(response.status));
+            }).then((response) => console.log(response));
         }
 
     });
