@@ -62,7 +62,34 @@ function Postos() {
         return data;
     }
     useEffect(() => {
-    getPostos();
+        getPostos().then(bars =>  {
+            // list bars
+            const barsWrapper = document.querySelector(".bars-list");
+            const barsTable = document.createElement("table");
+            barsWrapper.appendChild(barsTable);
+
+            // set headers
+            const headers = ["ID", "Nome", "Endereço", "Jogo"];
+            const headersRow = document.createElement("tr");
+            barsTable.appendChild(headersRow);
+            headers.forEach(header => {
+                const headerCell = document.createElement("th");
+                headerCell.innerText = header;
+                headersRow.appendChild(headerCell);
+            });
+
+            bars.sort((a,b) => a.id - b.id)
+                .forEach(bar => {
+                    const rowContent = [bar.id, bar.name, bar.address, bar.game.name];
+                    const row = document.createElement("tr");
+                    barsTable.appendChild(row);
+                    rowContent.forEach(content => {
+                        const cell = document.createElement("td");
+                        cell.innerText = content;
+                        row.appendChild(cell);
+                    });
+                });
+        });
     }, []);
     
     
@@ -118,6 +145,10 @@ function Postos() {
                     </Popup>
                 </Marker>
                 </MapContainer>
+            </div>
+
+            <div id="bars" className="table bars-list">
+                <div className="equipas">Bares</div>
             </div>
         </div>
     );

@@ -56,6 +56,16 @@ function TeamsTable() {
                         });
                 }, 1000);
             });
+
+            document.addEventListener("click", e => {
+                const target = e.target;
+
+                if (target.tagName === "TH") {
+                    if (!isNaN(target.innerText)) {
+                        window.location.href = "postos";
+                    }
+                }
+            });
         });
     });
 

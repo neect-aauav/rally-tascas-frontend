@@ -7,7 +7,7 @@ function Premios() {
         return (
             <div className="Premios">
                 <Navbar />
-                <h1>Prémios</h1>
+                <div className="textp-cabecalho">Prémios</div>
             </div>
         );
     }

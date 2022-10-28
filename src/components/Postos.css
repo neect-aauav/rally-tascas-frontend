@@ -1,6 +1,10 @@
+.Postos {
+    padding-bottom: 100px;
+}
+
 .basemapa{
-    width: 94vw;
-    height: 80vh;
+    width: 84vw;
+    height: 60vh;
     display: flex;
     background: #F7F7F7;
     box-shadow: 5px 5px 10px 5px rgb(0 0 0 / 10%);
@@ -22,4 +26,41 @@
     margin-top: 0px;
     margin-bottom: 20px;
     font-size: 20px;
+}
+
+.bars-list {
+    padding: 30px;
+    text-align: left;
+    box-shadow: unset;
+}
+
+.bars-list tr td:not(:first-child) {
+    text-align: left;
+}
+
+.bars-list tr td {
+    padding: 5px;
+}
+
+.bars-list tr:nth-child(2) {
+    background-color: #F7F7F7;
+}
+
+.bars-list td:nth-child(2) {
+    white-space: normal;
+}
+
+@media screen and (max-width: 570px) {
+    .bars-list * {
+        font-size: 13px !important;
+    }
+
+    .equipas {
+        font-size: 20px !important;
+    }
+
+    .bars-list {
+        padding: 30px 10px;
+        margin: auto 10px;
+    }
 }

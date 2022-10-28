@@ -31,6 +31,10 @@
     width: 25px;
 }
 
+.equipas {
+    text-align: center;
+}
+
 /* Default table styles for this demo */
 table {
     position: relative;
@@ -122,6 +126,6 @@ table th {
 }
 
 .updated-row {
-    color: #ffb200;
+    color: red;
     font-weight: bold;
 }

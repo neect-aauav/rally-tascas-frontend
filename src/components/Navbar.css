@@ -42,8 +42,18 @@ a {
     text-decoration: none;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 490px) {
     .Navbar > a:not(.logo) {
         padding: 0 10px;
+    }
+}
+
+@media screen and (max-width: 415px) {
+    .Navbar > a:not(.logo) h1 {
+        font-size: 14px !important;
+    }
+    
+    .logo img {
+        width: 40px;
     }
 }
