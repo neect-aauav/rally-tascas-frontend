@@ -97,58 +97,60 @@ function Postos() {
         <div className="Postos">
             <Navbar />
             <h1 className="textp-cabecalho">Descobre por onde tens de passar!</h1>
-            <div className="basemapa">
-                {/* create a map container that contains lat value of postolat0 and long value of postolng0 */}
-                <MapContainer center={[40.61117003565200, -8.653995146982000]} zoom={13} scrollWheelZoom={true}>
-                <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                <Marker position={[postolat0, postolng0]}>
-                    <Popup>
-                    {postoname0} <br /> 
-                    </Popup>
-                </Marker>
-                <Marker position={[postolat1, postolng1]}>
-                    <Popup>
-                    {postoname1} <br /> 
-                    </Popup>
-                </Marker>
-                <Marker position={[postolat2, postolng2]}>
-                    <Popup>
-                    {postoname2} <br />
-                    </Popup>
-                </Marker>
-                <Marker position={[postolat3, postolng3]}>
-                    <Popup>
-                    {postoname3}<br />
-                    </Popup>
-                </Marker>
-                <Marker position={[postolat4, postolng4]}>
-                    <Popup>
-                    {postoname4} <br /> MacDonalds
-                    </Popup>
-                </Marker>
-                <Marker position={[postolat5,postolng5]}>
-                    <Popup>
-                    {postoname5} <br /> 
-                    </Popup>
-                </Marker>
-                <Marker position={[postolat6,postolng6]}>
-                    <Popup>
-                    {postoname6} <br /> 
-                    </Popup>
-                </Marker>
-                <Marker position={[postolat7,postolng7]}>
-                    <Popup>
-                    {postoname7}<br /> 
-                    </Popup>
-                </Marker>
-                </MapContainer>
-            </div>
+            <div className="bars-container">
+                <div className="basemapa">
+                    {/* create a map container that contains lat value of postolat0 and long value of postolng0 */}
+                    <MapContainer center={[40.61117003565200, -8.653995146982000]} zoom={13} scrollWheelZoom={true}>
+                    <TileLayer
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                    <Marker position={[postolat0, postolng0]}>
+                        <Popup>
+                        {postoname0} <br /> 
+                        </Popup>
+                    </Marker>
+                    <Marker position={[postolat1, postolng1]}>
+                        <Popup>
+                        {postoname1} <br /> 
+                        </Popup>
+                    </Marker>
+                    <Marker position={[postolat2, postolng2]}>
+                        <Popup>
+                        {postoname2} <br />
+                        </Popup>
+                    </Marker>
+                    <Marker position={[postolat3, postolng3]}>
+                        <Popup>
+                        {postoname3}<br />
+                        </Popup>
+                    </Marker>
+                    <Marker position={[postolat4, postolng4]}>
+                        <Popup>
+                        {postoname4} <br /> MacDonalds
+                        </Popup>
+                    </Marker>
+                    <Marker position={[postolat5,postolng5]}>
+                        <Popup>
+                        {postoname5} <br /> 
+                        </Popup>
+                    </Marker>
+                    <Marker position={[postolat6,postolng6]}>
+                        <Popup>
+                        {postoname6} <br /> 
+                        </Popup>
+                    </Marker>
+                    <Marker position={[postolat7,postolng7]}>
+                        <Popup>
+                        {postoname7}<br /> 
+                        </Popup>
+                    </Marker>
+                    </MapContainer>
+                </div>
 
-            <div id="bars" className="table bars-list">
-                <div className="equipas">Bares</div>
+                <div id="bars" className="table bars-list">
+                    <div className="equipas">Bares</div>
+                </div>
             </div>
         </div>
     );

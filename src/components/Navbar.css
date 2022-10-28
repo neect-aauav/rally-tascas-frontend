@@ -11,13 +11,24 @@
 }
 
 .Navbar > a:not(.logo) {
-    padding: 0 20px;
+    padding: 0 15px;
 }
 
 .Navbar h1 {
     font-size: 18px;
     line-height: 2.25rem;
     color: #FFFFFF;
+}
+
+.Navbar a:not(.logo) img {
+    width: 20px;
+    filter: invert(1);
+}
+
+.Navbar a {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
 }
 
 .logo{
@@ -42,18 +53,56 @@ a {
     text-decoration: none;
 }
 
-@media screen and (max-width: 490px) {
+@media screen and (min-width: 1024px) {
+    .Navbar {
+        left: 0;
+        width: 130px;
+        height: 100%;
+        flex-direction: column;
+        border-top: unset;
+        border-right: 2px solid white;
+        bottom: unset;
+        right: unset;
+        top: 0;
+    }
+
+    .logo {
+        position: relative;
+        right: unset;
+    }
+
     .Navbar > a:not(.logo) {
-        padding: 0 10px;
+        padding: 0 15px;
+        display: flex;
+        align-items: center;
     }
 }
 
-@media screen and (max-width: 415px) {
+@media screen and (max-width: 575px) {
+    .Navbar {
+        height: 65px;
+    }
+
     .Navbar > a:not(.logo) h1 {
-        font-size: 14px !important;
+        display: none;
     }
     
+    .logo {
+        position: relative;
+        right: unset;
+    }
+
+    .Navbar a {
+        width: 100%;
+        display: unset;
+    }
+
     .logo img {
         width: 40px;
+    }
+
+    .Navbar > a:not(.logo) img {
+        width: 25px;
+        margin: auto;
     }
 }

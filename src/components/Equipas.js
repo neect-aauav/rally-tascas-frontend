@@ -48,7 +48,7 @@ function Equipas() {
     return (
         <div className="Bares">
             <Navbar />
-            <h1 className="titulo">Escolhe a equipa</h1>
+            <h1 className="textp-cabecalho">Escolhe a equipa</h1>
             <div className="basebares">
                 <div className="tabelabares" id="tabelaequipas">
                     

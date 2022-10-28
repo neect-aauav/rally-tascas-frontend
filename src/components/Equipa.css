@@ -184,6 +184,12 @@ input[type="checkbox"]:checked::after {
     border: 1px solid #bfbfbf;
 }
 
+@media screen and (min-width: 1024px) {
+    .team-container {
+        padding-left: 130px;
+    }
+}
+
 @media screen and (max-width: 570px) {
     .team-container * {
         font-size: 20px !important;

@@ -49,7 +49,7 @@ function Bares() {
     return (
         <div className="Bares">
             <Navbar />
-            <h1 className="titulo">Em que bar/posto te encontras?</h1>
+            <h1 className="textp-cabecalho">Em que bar/posto te encontras?</h1>
             <div className="basebares">
                 <div className="tabelabares" id="tabelabares">
                     

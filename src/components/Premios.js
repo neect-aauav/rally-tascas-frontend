@@ -8,6 +8,7 @@ function Premios() {
             <div className="Premios">
                 <Navbar />
                 <div className="textp-cabecalho">Prémios</div>
+                <div className="premios-container"></div>
             </div>
         );
     }

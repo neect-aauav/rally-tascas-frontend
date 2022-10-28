@@ -50,6 +50,12 @@
     white-space: normal;
 }
 
+@media screen and (min-width: 1024px) {
+    .bars-container {
+        padding-left: 130px;
+    }
+}
+
 @media screen and (max-width: 570px) {
     .bars-list * {
         font-size: 13px !important;

@@ -2,6 +2,12 @@
     padding-bottom: 100px;
 }
 
+@media screen and (min-width: 1024px) {
+    .membros-container {
+        padding-left: 130px;
+    }
+}
+
 @media screen and (max-width: 500px) {
     .membros-container * {
         font-size: 13px !important;
