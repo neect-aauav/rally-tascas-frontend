@@ -2,6 +2,9 @@ import React,{render, useEffect, useState} from "react";
 import './Postos.css';
 import Navbar from "./Navbar";
 import { MapContainer,TileLayer,Marker,Popup } from 'react-leaflet';
+
+const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "http://127.0.0.1:8000";
+
 function Postos() {
     
     const [postolat0,setPostolat0] = useState(0);
@@ -31,7 +34,7 @@ function Postos() {
 
     
     async function getPostos() {
-        const response = await fetch("https://rally-api.herokuapp.com/api/bars");
+        const response = await fetch(API_URL+"/api/bars");
         const data = await response.json();
         console.log(data);
         //read data[0].latitude to inside a string
