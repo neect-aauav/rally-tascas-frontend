@@ -9,6 +9,8 @@ import Bares from './components/Bares';
 import Equipas from './components/Equipas';
 import Equipa from './components/Equipa';
 
+import HALLOWEEN_BK from './images/halloween-bk.jpeg';
+
 const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "http://127.0.0.1:8000";
 
 // force https
@@ -21,7 +23,7 @@ function App() {
   checkBar(['/login', '/admin/bares']);
 
   return (
-    <div className="App">
+    <div style={{ backgroundImage: `url(${HALLOWEEN_BK})` }} className="App">
       <Router>
         <Routes>
           <Route  path="/" element={<Home/>} />

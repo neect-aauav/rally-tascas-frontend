@@ -6,6 +6,7 @@ function createTable(wrapper, team) {
         const title = document.createElement('div');
         title.classList.add('equipa');
         title.innerHTML = team;
+
         tablewrapper.appendChild(title);
         const table = document.createElement('table');
         table.classList.add('styled-table');
@@ -25,7 +26,14 @@ function fillTableHead(table, headers) {
         headers.forEach(header => {
             const th = document.createElement('th');
             headerRow.appendChild(th);
-            th.innerHTML = header;
+            if (header.split("/").length > 1) {
+                // create image
+                const img = document.createElement('img');
+                img.src = header;
+                th.appendChild(img);
+            }
+            else
+                th.innerHTML = header;
         });
     }
 }

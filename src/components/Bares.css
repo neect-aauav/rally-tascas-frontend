@@ -28,7 +28,7 @@ body {
 
 .buttonbar{
     position: relative;
-    background: #5E69CD;
+    background: var(--primary-color);
     cursor: pointer;
     border-radius: 0px !important;
     padding: 10px 20px;
@@ -38,7 +38,7 @@ body {
 }
 
 .buttonbar:hover {
-    background: #838cdd;
+    background: #fda35a;
 }
 
 .titulo{
@@ -47,4 +47,6 @@ body {
     color: #000000;
     text-align: center;
     margin-bottom: 20px;
+    margin-top: 0;
+    padding-top: 20px;
 }

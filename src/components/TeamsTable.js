@@ -2,6 +2,9 @@ import { useEffect } from 'react';
 import './Table.css';
 import { createTable, fillTableHead } from './Table.js';
 
+import POINTS from '../images/point.png';
+import RANKING from '../images/ranking.png';
+
 const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "http://127.0.0.1:8000";
 
 function TeamsTable() {
@@ -18,7 +21,7 @@ function TeamsTable() {
                     fetch(API_URL+"/api/bars")
                         .then(response => response.json())
                         .then(bars => {
-                            fillTableHead(table, ["Nome", ...bars.map(bar => "P"+bar.id), "Total"]);
+                            fillTableHead(table, [RANKING, "Nome", ...bars.map(bar => String(bar.id)).sort((a, b) => a-b), POINTS]);
     
                             // loading
                             const loading = document.createElement('div');
@@ -41,7 +44,6 @@ function TeamsTable() {
                             // remove loading
                             tables.forEach(table => table.querySelector(".loading")?.remove());
     
-                            teams.forEach(teams => console.log(teams));
                             teams.forEach((team, i) => {
                                 updateTable(tables[i], team);
                             });
@@ -80,7 +82,7 @@ function updateTable(table, team) {
         // fill row with member data
         const row = document.createElement('tr');
         table.appendChild(row);
-        member.forEach((value, j) => {
+        [i+1, ...member].forEach((value, j) => {
             columnSwap(row, row.querySelector("td:nth-child("+(j+1)+")"), document.createElement('td'), value);
         });
     });

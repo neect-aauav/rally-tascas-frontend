@@ -4,7 +4,7 @@ body {
 }
 
 .team-container {
-    margin-top: 100px;
+    padding-top: 100px;
     padding-bottom: 100px;
 }
 
@@ -30,7 +30,7 @@ body {
     flex-direction: row;
     column-gap: 20px;
     padding-left: 40px;
-    background-color: #5E69CD;
+    background-color: var(--primary-color);
     color: white;
     border-radius: 20px;
 }
@@ -66,7 +66,7 @@ body {
     display: flex;
     align-items: center;
     column-gap: 20px;
-    background-color: #5E69CD;
+    background-color: var(--primary-color);
     color: white;
     padding: 10px 20px;
     border-radius: 20px;
@@ -126,16 +126,16 @@ body {
 .button {
     position: relative;
     top: 0vh;
-    width: 20vw;
-    height: 5vh;
-    background: #5E69CD;
+    width: 40vw;
+    height: 6vh;
+    background: var(--primary-color);
     border-radius: 20px;
     cursor: pointer;
     color: white;
     font-size: 20px;
-    line-height: 2.5rem;
+    line-height: 3rem;
     font-weight: bold;
-    margin-bottom: 20px
+    margin-bottom: 20px;
 }
 
 .egg {
@@ -216,9 +216,13 @@ input[type="checkbox"]:checked::after {
 
 @media screen and (max-width: 400px) {
     .team-container {
-        margin-top: 80px;
+        padding-top: 80px;
     }
 
+    .wrapper {
+        margin: 0;
+        border-radius: 0;
+    }
     
     #total-points {
         top: -65px;

@@ -2,6 +2,14 @@ import { useEffect } from 'react';
 import './Table.css';
 import { createTable, fillTableHead } from './Table.js';
 
+import RANKING from '../images/ranking.png';
+import POINTS from '../images/point.png';
+import EGG from '../images/egg-black.png';
+import DRINKS from '../images/shot-glass-black.png';
+import PUKE from '../images/puking.png';
+import MEMBERS from '../images/members.png';
+import PUMPKIN from '../images/pumpkin.png';
+
 const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "http://127.0.0.1:8000";
 
 function GeneralTable() {
@@ -10,7 +18,8 @@ function GeneralTable() {
 
         const table = createTable(home, "Equipas");
 
-        fillTableHead(table, ["Nome", "Pontos", "Bebidas", "Ovo", "Vomitou", "Membros"]);
+        
+        fillTableHead(table, [RANKING, "Nome", POINTS, DRINKS, EGG, PUKE, MEMBERS]);
 
         // loading
         const loading = document.createElement('div');
@@ -27,6 +36,12 @@ function GeneralTable() {
                 updateTable(table, teams);
             });
         }, 1000);
+
+        // pumpkin image
+        const pumpkin = document.createElement('img');
+        pumpkin.src = PUMPKIN;
+        pumpkin.classList.add('pumpkin');
+        document.querySelector(".equipa").appendChild(pumpkin);
     });
 
     return (
@@ -57,10 +72,10 @@ function updateTable(table, teams) {
         newElem.innerHTML = value; 
     }
 
-    teams.forEach(team => {
+    teams.forEach((team, i) => {
         const row = document.createElement('tr');
         table.appendChild(row);
-        team.forEach((column, j) => columnSwap(row, row.querySelector("td:nth-child("+(j+1)+")"), document.createElement('td'), column));
+        [i+1, ...team].forEach((column, j) => columnSwap(row, row.querySelector("td:nth-child("+(j+1)+")"), document.createElement('td'), column));
     });
 }
 

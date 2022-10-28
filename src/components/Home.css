@@ -1,10 +1,18 @@
+:root {
+    --primary-color: #333335;
+  }  
+
 body {
     overflow-x: hidden;
     background-color: #E5E5E5;
 }
 
+.Home {
+    padding: 20px 0;
+}
+
 .home-container {
-    margin-top: 20px;
+    padding-top: 20px;
     display: flex;
     flex-direction: column;
     row-gap: 30px;
@@ -18,24 +26,30 @@ body {
 }
 
 .separator {
-    height: 1px;
-    width: 80%;
-    background-color: silver;
+    height: 5px;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
     margin: auto;
 }
 
+.home-title {
+    color: white;
+    font-weight: bolder;
+    font-size: 40px !important;
+}
+
 @media screen and (max-width: 500px) {
-
-
     .home-container * {
         font-size: 13px !important;
-    }
-
-    .separator {
-        width: 100%;
     }
     
     .equipa {
         font-size: 20px !important;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .home-title {
+        font-size: 33px !important;
     }
 }

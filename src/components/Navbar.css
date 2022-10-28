@@ -1,6 +1,6 @@
 .Navbar{
-    z-index: 10;
-    background: #5E69CD;
+    z-index: 550;
+    background: var(--primary-color);
     display: flex;
     align-items: center;
     bottom: 0;
@@ -40,4 +40,10 @@
 
 a {
     text-decoration: none;
+}
+
+@media screen and (max-width: 400px) {
+    .Navbar > a:not(.logo) {
+        padding: 0 10px;
+    }
 }

@@ -31,7 +31,7 @@
   height: 40px;
   border-radius: 10px;
   border: 1px solid #a9a9a9;
-  background-color: #5E69CD;
+  background-color: var(--primary-color);
   color: white;
   font-weight: bold;
   font-size: 20px;

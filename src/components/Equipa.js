@@ -122,9 +122,10 @@ function Equipa() {
                     members.forEach(member => {
                         const member_id = parseInt(member.getAttribute('data-member-id'));
                         const drinks = parseInt(member.querySelector('.dropdown').value);
+                        const gamePoints = document.querySelector('#game-checkbox').checked ? bar.game.points : 0;
                         members_values.push({
                             "id": member_id,
-                            "points": (drinks * drinkPointsValue) + parseFloat(document.querySelector(".game .dropdown").value/members.length),
+                            "points": (drinks * drinkPointsValue) + parseFloat(gamePoints/members.length),
                             "drinks": drinks
                         });
                         
@@ -156,7 +157,14 @@ function Equipa() {
                             'Authorization': 'Token ' + localStorage.getItem('token')
                         },
                         body: JSON.stringify(body)
-                    }).then((response) => console.log(response));
+                    }).then((response) => {
+                        if (response.status === 200) {
+                            window.location.href = "/";
+                        }
+                        else {
+                            alert("Ocorreu um erro. Por favor tenta novamente.");
+                        }
+                    });
                 }
         });
 
@@ -202,38 +210,41 @@ function Equipa() {
     });
 
     return(
-        <div className="team-container">
+        <div className='Equipa'>
             <Navbar />
-            <div className="wrapper" id="equipa">
-                <div className="wrapper" id="total-points">
-                    <img src={CHECKPOINT}></img>
-                    <div className="team-name"></div>
-                    <div className="points">
-                        <div className="points-value"></div>
-                        <div className="points-text">Pontos</div>
+            <div className="team-container">
+                <div className="wrapper" id="equipa">
+                    <div className="wrapper" id="total-points">
+                        <img src={CHECKPOINT}></img>
+                        <div className="team-name"></div>
+                        <div className="points">
+                            <div className="points-value"></div>
+                            <div className="points-text">Pontos</div>
+                        </div>
                     </div>
-                </div>
-                <div className="section egg">
-                    <div className="section-title"><img src={EGG}></img>Ovo</div>
+                    <div className="section egg">
+                        <div className="section-title"><img src={EGG}></img>Ovo</div>
+                        
+                    </div>
+                    <div className="section-title"><img src={MEMBERS}></img>Membros</div>
+                    <div className="section members">
+                        
+                        <div className="members-list"></div>
+                    </div>
+                    <div className="section game">
+                        <div className="section-title"><img src={GAME}></img>Jogo<input id="game-checkbox" type="checkbox"></input></div>
+                    </div>
                     
-                </div>
-                <div className="section-title"><img src={MEMBERS}></img>Membros</div>
-                <div className="section members">
-                    
-                    <div className="members-list"></div>
-                </div>
-                <div className="section game">
-                    <div className="section-title"><img src={GAME}></img>Jogo<input id="game-checkbox" type="checkbox"></input></div>
-                </div>
-                
-                {/* game of ESSUA */}
-                <div id="special-game" className="section game">
-                    <div className="section-title"><img src={EGG_CUP}></img>Bebeu o Ovo<input id="special-game-checkbox" type="checkbox"></input></div>
-                </div>
+                    {/* game of ESSUA */}
+                    <div id="special-game" className="section game">
+                        <div className="section-title"><img src={EGG_CUP}></img>Bebeu o Ovo<input id="special-game-checkbox" type="checkbox"></input></div>
+                    </div>
 
-                <div className="button" id="send">Send</div>
+                    <div className="button" id="send">Send</div>
+                </div>
             </div>
         </div>
+ 
     )
 }
 
