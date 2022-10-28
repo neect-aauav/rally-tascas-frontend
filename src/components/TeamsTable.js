@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import './Table.css';
-import { createTable, fillTableHead } from './Table.js';
+import { createTable, fillTableHead, updateRow } from './Table.js';
 
 import POINTS from '../images/point.png';
 import RANKING from '../images/ranking.png';
@@ -15,6 +15,12 @@ function TeamsTable() {
             const setupTables = teams.map(team => {
                 return(new Promise((resolve, reject) => {
                     const home = document.querySelector("#teams-tables");
+                    
+                    // add link anchor bottom before table
+                    const anchor = document.createElement('div');
+                    anchor.class = "achor";
+                    home.appendChild(anchor);
+
                     const table = createTable(home, "Loading...");
                     tables.push(table);
     
@@ -64,28 +70,16 @@ async function getTeams() {
     return data;
 }
 
-function updateTable(table, team) {        
-    // remove old rows
-    table.querySelectorAll("tr:not(:first-child)").forEach(tr => tr?.remove());
-
-    // column swap
-    const columnSwap = (row, oldElem, newElem, value) => {
-        if (oldElem) row.replaceChild(newElem, oldElem);
-        else row.appendChild(newElem);
-        newElem.innerHTML = value; 
-    }
-
+function updateTable(table, team) {
+    // update anchor
+    table.parentElement.previousSibling.id = team.team.replaceAll(" ", "-");
+    
     // update table name
     table.parentElement.querySelector(".equipa").innerHTML = team.team;
 
-    team.members.forEach((member, i) => {
-        // fill row with member data
-        const row = document.createElement('tr');
-        table.appendChild(row);
-        [i+1, ...member].forEach((value, j) => {
-            columnSwap(row, row.querySelector("td:nth-child("+(j+1)+")"), document.createElement('td'), value);
-        });
-    });
+    // old rows
+    const oldRows = table.querySelectorAll("tr:not(:first-child)");
+    team.members.forEach((member, i) => updateRow(table, oldRows[i], [i+1, ...member]));
 }
 
 export default TeamsTable;

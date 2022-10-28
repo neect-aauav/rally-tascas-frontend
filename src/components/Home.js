@@ -17,7 +17,7 @@ function Home() {
         <div className="Home">
             <div className="home-title">TRICK OR DRINK</div>
             <Navbar />
-            <div class="home-container">
+            <div className="home-container">
                 <GeneralTable />
                 <div className="separator"></div>
                 <TeamsTable />

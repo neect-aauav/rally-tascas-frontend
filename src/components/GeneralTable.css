@@ -1,0 +1,4 @@
+#general-table tr:not(:first-child):hover {
+    background-color: #bbbbbb;
+    cursor: pointer;
+}

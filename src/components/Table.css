@@ -120,3 +120,8 @@ table th {
         font-size: 20px !important;
     }
 }
+
+.updated-row {
+    color: #ffb200;
+    font-weight: bold;
+}

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import './Table.css';
-import { createTable, fillTableHead } from './Table.js';
+import './GeneralTable.css';
+import { createTable, fillTableHead, updateRow } from './Table.js';
 
 import RANKING from '../images/ranking.png';
 import POINTS from '../images/point.png';
@@ -56,27 +57,9 @@ async function getTeamsScoreboard() {
 }
 
 function updateTable(table, teams) {        
-    // remove old rows
-    table.querySelectorAll("tr:not(:first-child)").forEach(tr => tr?.remove());
-
-    // column swap
-    const columnSwap = (row, oldElem, newElem, value) => {
-        if (oldElem) row.replaceChild(newElem, oldElem);
-        else row.appendChild(newElem);
-
-        if (value === true)
-            newElem.innerHTML = "✔️";
-        else if (value === false)
-            newElem.innerHTML = "❌";
-        else
-        newElem.innerHTML = value; 
-    }
-
-    teams.forEach((team, i) => {
-        const row = document.createElement('tr');
-        table.appendChild(row);
-        [i+1, ...team].forEach((column, j) => columnSwap(row, row.querySelector("td:nth-child("+(j+1)+")"), document.createElement('td'), column));
-    });
+    // old rows
+    const oldRows = table.querySelectorAll("tr:not(:first-child)");
+    teams.forEach((team, i) => updateRow(table, oldRows[i], [i+1, ...team]));
 }
 
 export default GeneralTable;

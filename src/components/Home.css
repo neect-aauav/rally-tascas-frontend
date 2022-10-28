@@ -1,6 +1,11 @@
 :root {
     --primary-color: #333335;
-  }  
+}  
+
+/* page smooth scroll */
+html {
+    scroll-behavior: smooth;
+}
 
 body {
     overflow-x: hidden;
