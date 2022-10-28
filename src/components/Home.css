@@ -27,7 +27,7 @@ body {
 .home-container > div {
     display: flex;
     flex-direction: column;
-    row-gap: 30px;
+    row-gap: 10px;
 }
 
 .separator {
@@ -45,7 +45,7 @@ body {
 
 @media screen and (min-width: 1024px) {
     .home-container {
-        padding-left: 130px;
+        padding-left: var(--navbar-width);
     }
 }
 

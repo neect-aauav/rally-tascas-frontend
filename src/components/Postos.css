@@ -52,7 +52,7 @@
 
 @media screen and (min-width: 1024px) {
     .bars-container {
-        padding-left: 130px;
+        padding-left: var(--navbar-width);
     }
 }
 

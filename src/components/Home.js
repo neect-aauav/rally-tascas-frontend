@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './Home.css';
 import './Table.css';
 import Navbar from "./Navbar";
@@ -13,6 +13,13 @@ import PUKE from '../images/puking.png';
 import MEMBERS from '../images/members.png';
 
 function Home() {
+
+    useEffect(() => {
+        // select navbar tab
+        const nav = document.querySelector(".Navbar");
+        nav.querySelector(`a[href="${window.location.pathname}"]`)?.classList.add("selected-nav");
+      }, []);
+
     return (
         <div className="Home">
             <div className="home-title">TRICK OR DRINK</div>

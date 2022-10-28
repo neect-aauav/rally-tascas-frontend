@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import Navbar from "./Navbar";
 import './Membros.css';
 import { createTable, fillTableHead, updateRow } from './Table.js';
@@ -50,6 +51,12 @@ function Membros() {
                 }
             });
         });
+
+    useEffect(() => {
+        // select navbar tab
+        const nav = document.querySelector(".Navbar");
+        nav.querySelector(`a[href="${window.location.pathname}"]`)?.classList.add("selected-nav");
+    }, []);
 
     return (
         <div className="Membros">

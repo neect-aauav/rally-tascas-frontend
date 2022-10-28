@@ -90,6 +90,11 @@ function Postos() {
                     });
                 });
         });
+        
+        // select navbar tab
+        const nav = document.querySelector(".Navbar");
+        nav.querySelector(`a[href="${window.location.pathname}"]`)?.classList.add("selected-nav");
+
     }, []);
     
     

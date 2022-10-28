@@ -99,7 +99,7 @@ body {
 .membernames {
     font-size: 30px;
     line-height: 0.8rem;
-    width: 155px;
+    width: var(--navbar-width);
     font-size: 30px;
     line-height: 0.8rem;
     white-space: nowrap;
@@ -184,9 +184,24 @@ input[type="checkbox"]:checked::after {
     border: 1px solid #bfbfbf;
 }
 
+.warning-top-message {
+    top: 0;
+    position: fixed;
+    bottom: auto;
+    background-color: #ff0052;
+    width: 100%;
+    padding: 10px 0;
+    color: white;
+    cursor: pointer;
+}
+
+.warning-top-message:hover {
+    background-color: #be3b65;
+}
+
 @media screen and (min-width: 1024px) {
     .team-container {
-        padding-left: 130px;
+        padding-left: var(--navbar-width);
     }
 }
 

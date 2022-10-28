@@ -11,7 +11,6 @@ function Bares() {
         return await response.json();
     }
     
-
     function writebutton(data,parent){
         if(parent){
             // remove existing buttons
@@ -32,7 +31,7 @@ function Bares() {
             });
         }
     }
-    
+
     getPostos().then((data) => {
         // console.log(data);
         writebutton(data,document.querySelector("#tabelabares"));

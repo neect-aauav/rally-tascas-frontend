@@ -1,3 +1,7 @@
+:root {
+    --navbar-width: 155px;
+}
+
 .Navbar{
     z-index: 550;
     background: var(--primary-color);
@@ -10,7 +14,7 @@
     border-top: 4px solid white;
 }
 
-.Navbar > a:not(.logo) {
+.Navbar > a {
     padding: 0 15px;
 }
 
@@ -53,10 +57,22 @@ a {
     text-decoration: none;
 }
 
+.selected-nav {
+    background-color: white;
+}
+
+.selected-nav img {
+    filter: invert(0) !important;
+}
+
+.selected-nav h1 {
+    color: initial !important;
+}
+
 @media screen and (min-width: 1024px) {
     .Navbar {
         left: 0;
-        width: 130px;
+        width: var(--navbar-width);
         height: 100%;
         flex-direction: column;
         border-top: unset;
@@ -66,19 +82,27 @@ a {
         top: 0;
     }
 
+    .Navbar > a {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding-left: 30px;
+        padding: 0;
+    }
+
+    .Navbar > a:not(.logo) img {
+        margin-left: 20px;
+    }
+
     .logo {
         position: relative;
         right: unset;
-    }
-
-    .Navbar > a:not(.logo) {
-        padding: 0 15px;
-        display: flex;
-        align-items: center;
+        margin-top: 15px;
+        width: fit-content !important;
     }
 }
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 600px) {
     .Navbar {
         height: 65px;
     }
@@ -94,7 +118,13 @@ a {
 
     .Navbar a {
         width: 100%;
+        height: 100%;
         display: unset;
+
+        /* vertical align */
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .logo img {

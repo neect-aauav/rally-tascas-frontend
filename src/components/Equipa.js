@@ -14,6 +14,7 @@ const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : 
     
 function Equipa() {
     const drinkPointsValue = 10, pukePointsValue = -20, specialGamePointsValue = 50;
+    const pukedPoints = {};
     
     // get team id from url
     const { id } = useParams();
@@ -25,6 +26,16 @@ function Equipa() {
             if (bar.name !== "ESSUA") document.querySelector("#special-game").style.display = "none";
 
             getTeam(id).then((data) => {
+                const visited = data.bars[localStorage.bar].visited;
+                if (visited) {
+                    // create warning top message
+                    const warning = document.createElement('div');
+                    warning.classList.add('warning-top-message');
+                    warning.innerText = "Esta equipa já visitou este bar!";
+                    document.querySelector('.Equipa').appendChild(warning);
+                    warning.addEventListener("click", () => warning.remove());
+                }
+
                 // set title as team name
                 document.querySelector('.team-name').innerText = data.name;
 
@@ -41,6 +52,8 @@ function Equipa() {
                     memberwrapper.classList.add("memberwrapper")
                     // set attribute with member id
                     memberwrapper.setAttribute('data-member-id', member.id);
+
+                    pukedPoints[member.id] = 0;
 
                     const h1 = document.createElement('div')
                     memberwrapper.appendChild(h1)
@@ -85,8 +98,14 @@ function Equipa() {
                     checkbox.classList.add('checkbox-puked')
                     checkbox.value = false
                     checkbox.addEventListener('input', () => {
-                        if (checkbox.checked) addPoints(pukePointsValue);
-                        else removePoints(pukePointsValue);
+                        if (checkbox.checked) {
+                            pukedPoints[member.id] = pukePointsValue;
+                            addPoints(pukePointsValue);
+                        }
+                        else {
+                            pukedPoints[member.id] = 0;
+                            removePoints(pukePointsValue);
+                        }
                     });
                 });
 
@@ -125,7 +144,7 @@ function Equipa() {
                         const gamePoints = document.querySelector('#game-checkbox').checked ? bar.game.points : 0;
                         members_values.push({
                             "id": member_id,
-                            "points": (drinks * drinkPointsValue) + parseFloat(gamePoints/members.length),
+                            "points": (drinks * drinkPointsValue) + parseFloat(gamePoints/members.length) + pukedPoints[member_id],
                             "drinks": drinks
                         });
                         
