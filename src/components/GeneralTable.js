@@ -28,6 +28,13 @@ function GeneralTable() {
         loading.innerHTML = "Loading...";
         table.appendChild(loading);
 
+        // fill table from localstorage, if cashed
+        const teams = JSON.parse(localStorage.getItem("general-table"));
+        if (teams) {
+            updateTable(table, teams);
+            loading.remove();
+        }
+
         setInterval(() => {
             getTeamsScoreboard().then(teams => {
                 // remove loading
@@ -53,6 +60,7 @@ function GeneralTable() {
 async function getTeamsScoreboard() {
     const response = await fetch(API_URL+"/api/scoreboard/teams");
     const data = await response.json();
+    localStorage.setItem("general-table", JSON.stringify(data));
     return data;
 }
 

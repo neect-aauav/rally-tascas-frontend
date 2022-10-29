@@ -25,19 +25,24 @@ function Membros() {
             loading.innerHTML = "Loading...";
             table.appendChild(loading);
 
+            // fill table from localstorage, if cashed
+            const members = JSON.parse(localStorage.getItem("members-table"));
+            if (members) {
+                loading.remove();
+                updateTable(table, members);
+            }
+
             // continously update members rows
             setInterval(() => {
                 fetch(API_URL+"/api/scoreboard/members")
                     .then(response => response.json())
                     .then(rows => {
+                        localStorage.setItem("members-table", JSON.stringify(rows));
+
                         // remove loading
                         table.querySelector(".loading")?.remove();
 
-                        // old rows
-                        const oldRows = table.querySelectorAll("tr:not(:first-child)");
-                        rows.forEach((row, i) => {
-                            updateRow(table, oldRows[i], [i+1, ...row]);
-                        });
+                        updateTable(table, rows);
                     });
             }, 1000);
 
@@ -65,6 +70,12 @@ function Membros() {
             <div className="membros-container"></div>
         </div>
     )
+}
+
+function updateTable(table, rows) {  
+    // old rows
+    const oldRows = table.querySelectorAll("tr:not(:first-child)");
+    rows.forEach((row, i) => updateRow(table, oldRows[i], [i+1, ...row]));      
 }
 
 export default Membros;

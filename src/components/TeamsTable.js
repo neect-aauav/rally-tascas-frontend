@@ -35,6 +35,13 @@ function TeamsTable() {
                             loading.innerHTML = "Loading...";
                             table.appendChild(loading);
     
+                            // fill tables from localstorage, if cashed
+                            const teams = JSON.parse(localStorage.getItem("teams-tables"));
+                            if (teams) {
+                                loading.remove();
+                                teams.forEach((team, i) => updateTable(tables[i], team));
+                            }
+
                             resolve(table);
                         });
                 }));
@@ -47,14 +54,14 @@ function TeamsTable() {
                     fetch(API_URL+"/api/scoreboard/members/all")
                         .then(response => response.json())
                         .then(teams => {
+                            localStorage.setItem("teams-tables", JSON.stringify(teams));
+                            
                             // remove loading
                             tables.forEach(table => table.querySelector(".loading")?.remove());
     
-                            teams.forEach((team, i) => {
-                                updateTable(tables[i], team);
-                            });
+                            teams.forEach((team, i) => updateTable(tables[i], team));
                         });
-                }, 1000);
+                }, 3000);
             });
 
             document.addEventListener("click", e => {

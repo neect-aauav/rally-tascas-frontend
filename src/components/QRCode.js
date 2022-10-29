@@ -2,56 +2,52 @@ import QrReader from 'modern-react-qr-reader'
 import './QRCode.css';
 import Navbar from "./NavbarAdmin";
 import { Component } from 'react';
+import React,{useState,useEffect} from "react";
 
 const BASE_IRI = process.env.REACT_APP_BASE_IRI ? process.env.REACT_APP_BASE_IRI : "http://localhost:3000";
 
-class QRCode extends Component {
-  constructor(props) {
-        super(props);
+const QRCode = () => {
+  const [result, setResult] = useState('À espera de um QR Code...');
 
-        this.state = {
-            result: 'À espera de um QR Code...'
-        }
+  useEffect(() => {
+    // select navbar tab
+    const nav = document.querySelector(".Navbar");
+    nav.querySelector(`a[href="${window.location.pathname}"]`)?.classList.add("selected-nav");
+  }, []);
 
-        this.handleError = this.handleError.bind(this);
-        this.handleScan = this.handleScan.bind(this);
-    }
-
-  handleScan = (data) => {
+  const handleScan = (data) => {
     if (data) {
-      this.state.result = data;
+      setResult(data);
 
       // redirect to team page if the url is valid
       if (data.includes(BASE_IRI)) {
         window.location.href = data;
       }
       else {
-        this.state.result = "QR Code inválido";
+        setResult("QR Code inválido");
       }
     }
   }
 
-  handleError = (err) => {
+  const handleError = (err) => {
     console.error(err);
-    this.state.result = "Erro ao ler o QR Code";
+    setResult("Erro ao ler o QR Code");
   }
 
-  render() {
-    return (
-      <div className='QRCode'>
-        <Navbar />
-        <div className='QRCode-container'>
-          <div id="info">{this.state.result}</div>
-          <QrReader
-            facingMode={"environment"}
-            dekay={500}
-            onError={this.handleError}
-            onScan={this.handleScan}
-          />
-          </div>
-      </div>
-    );
-  }
+  return (
+    <div className='QRCode'>
+      <Navbar />
+      <div className='QRCode-container'>
+        <div id="info">{result}</div>
+        <QrReader
+          facingMode={"environment"}
+          delay={100}
+          onError={handleError}
+          onScan={handleScan}
+        />
+        </div>
+    </div>
+  );
 };
 
 export default QRCode;

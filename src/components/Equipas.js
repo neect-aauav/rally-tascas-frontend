@@ -6,6 +6,12 @@ const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : 
 
 function Equipas() {
 
+    useEffect(() => {
+        // select navbar tab
+        const nav = document.querySelector(".Navbar");
+        nav.querySelector(`a[href="${window.location.pathname}"]`)?.classList.add("selected-nav");
+      }, []);
+
     async function getPostos() {
         const response = await fetch(API_URL+"/api/teams");
         const data = await response.json();

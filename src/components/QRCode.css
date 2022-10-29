@@ -26,3 +26,9 @@ video {
     margin: auto;
     margin-bottom: 20px;
 }
+
+@media screen and (min-width: 1024px) {
+    .QRCode-container {
+        padding-left: var(--navbar-width);
+    }
+}
