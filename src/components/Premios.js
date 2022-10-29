@@ -1,6 +1,7 @@
 import './Premios.css';
 import Navbar from "./Navbar";
 import React, { useEffect } from "react";
+import Prizes from './Prizes';
 
 function Premios() {
     useEffect(() => {
@@ -13,7 +14,9 @@ function Premios() {
         <div className="Premios">
             <Navbar />
             <div className="textp-cabecalho">Prémios</div>
-            <div className="premios-container"></div>
+            <div className="premios-container">
+                <Prizes/>
+            </div>
         </div>
     );
 }

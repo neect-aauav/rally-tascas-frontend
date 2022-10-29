@@ -25,7 +25,7 @@ function App() {
   checkBar(['/login', '/admin/bares']);
 
   return (
-    <div style={{ backgroundImage: `url(${HALLOWEEN_BK})` }} className="App">
+    <div className="App">
       <Router>
         <Routes>
           <Route  path="/" element={<Home/>} />
