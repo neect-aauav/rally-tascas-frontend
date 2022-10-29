@@ -1,6 +1,6 @@
 import QrReader from 'modern-react-qr-reader'
 import './QRCode.css';
-import Navbar from "./Navbar";
+import Navbar from "./NavbarAdmin";
 import { Component } from 'react';
 
 const BASE_IRI = process.env.REACT_APP_BASE_IRI ? process.env.REACT_APP_BASE_IRI : "http://localhost:3000";

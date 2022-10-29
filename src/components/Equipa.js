@@ -178,7 +178,7 @@ function Equipa() {
                         body: JSON.stringify(body)
                     }).then((response) => {
                         if (response.status === 200) {
-                            window.location.href = "/";
+                            window.location.href = "/admin/qrcode";
                         }
                         else {
                             alert("Ocorreu um erro. Por favor tenta novamente.");
