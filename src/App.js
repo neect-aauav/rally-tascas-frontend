@@ -9,6 +9,7 @@ import Bares from './components/Bares';
 import Equipas from './components/Equipas';
 import Equipa from './components/Equipa';
 import Membros from './components/Membros';
+import QRCode from './components/QRCode';
 
 import HALLOWEEN_BK from './images/halloween-bk.jpeg';
 
@@ -32,6 +33,7 @@ function App() {
           <Route  path="/postos" element={<Postos/>} />
           <Route  path="/premios" element={<Premios/>} />
           <Route  path="/membros" element={<Membros/>} />
+          <Route  path="/qrcode" element={<QRCode/>} />
           <Route  path="/admin/bares" element={<Bares/>} />
           <Route  path="/admin/equipas" element={<Equipas/>} />
           <Route  path="/admin/equipas/:id" element={<Equipa/>} />
