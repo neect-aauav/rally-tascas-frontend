@@ -7,7 +7,7 @@
 }
 
 .QRCode-container section div {
-    border: 10px solid white;
+    border: 10px solid white !important;
     border-radius: 40px;
 }
 

@@ -1,12 +1,21 @@
 import React, { useEffect } from "react";
 import './Login.css';
-import Navbar from "./Navbar";
+import Navbar from "./NavbarAdmin";
 import {ToastContainer,toast,Zoom,Bounce} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "http://127.0.0.1:8000";
 
 function Login() {
+
+    // check if user is already logged in
+    if (localStorage.getItem('token')) {
+        if (localStorage.getItem('bar')) {
+            window.location.href = '/admin/equipas';
+        } else {
+            window.location.href = '/admin/bares';
+        }
+    }
 
     async function getPostos() {
         const response = await fetch(API_URL+"/api/login",
