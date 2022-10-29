@@ -1,5 +1,5 @@
 import './Equipa.css';
-import Navbar from "./Navbar";
+import Navbar from "./NavbarAdmin";
 import { useParams } from "react-router-dom";
 
 import SHOT_GLASS from '../images/shot-glass.png';
