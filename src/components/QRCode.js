@@ -10,18 +10,22 @@ class QRCode extends Component {
       }
   
       this.handleScan = this.handleScan.bind(this)
+      this.facingMode = 'rear'
     }
+
     handleScan(data){
       this.setState({
         result: data,
       })
     }
+
     handleError(err){
-      console.error(err)
+      // add error message to info div
+      document.getElementById('info p').innerHTML = err;
     }
+    
     render(){
       const previewStyle = {
-        height: 240,
         width: 320,
       }
   
@@ -33,7 +37,9 @@ class QRCode extends Component {
             onError={this.handleError}
             onScan={this.handleScan}
             />
-          <p>{this.state.result}</p>
+          <div id="info">
+            <p>{this.state.result}</p>
+          </div>
         </div>
       )
     }
