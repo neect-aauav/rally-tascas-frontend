@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import { QrReader } from 'react-qr-reader';
+import QrReader from 'modern-react-qr-reader'
 import './QRCode.css';
 import Navbar from "./Navbar";
 import { useState } from 'react';
@@ -8,13 +7,15 @@ const BASE_IRI = process.env.REACT_APP_BASE_IRI ? process.env.REACT_APP_BASE_IRI
 
 const QRCode = (props) => {
   const [data, setData] = useState('Á espera de um QR Code...');
-  
+
   return (
     <div className='QRCode'>
       <Navbar />
       <div className='QRCode-container'>
         <div id="info">{data}</div>
         <QrReader
+          facingMode={"environment"}
+          dekay={500}
           onResult={(result, error) => {
             if (!!result) {
               setData(result?.text);
@@ -33,7 +34,6 @@ const QRCode = (props) => {
               console.log(error);
             }
           }}
-          facingMode={"environment"}
         />
         </div>
     </div>
