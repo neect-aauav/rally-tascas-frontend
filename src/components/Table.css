@@ -31,6 +31,11 @@
     width: 25px;
 }
 
+.table tr td div {
+    max-width: 30vw;
+    overflow: auto;
+}
+
 .equipas {
     text-align: center;
 }

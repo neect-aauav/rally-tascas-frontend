@@ -43,12 +43,15 @@ const columnSwap = (row, oldElem, newElem, value) => {
     if (oldElem) row.replaceChild(newElem, oldElem);
     else row.appendChild(newElem);
 
-    newElem.innerHTML = value; 
+    const content = document.createElement('div');
+    newElem.appendChild(content);
+    content.innerText = value;
+    // newElem.innerHTML = value; 
 }
 
 function updateRow(table, oldRow, newRow) {
     // get row values
-    const oldValues = oldRow ? Array.from(oldRow.children).map(td => td.innerHTML) : [];
+    const oldValues = oldRow ? Array.from(oldRow.children).map(td => td.innerText) : [];
     
     // compare old values with new ones
     const newValues = [];
