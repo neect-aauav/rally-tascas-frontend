@@ -33,7 +33,7 @@ const QRCode = (props) => {
               console.log(error);
             }
           }}
-          facingMode="environment"
+          facingMode={"environment"}
         />
         </div>
     </div>
