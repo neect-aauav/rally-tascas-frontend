@@ -11,10 +11,10 @@ class QRCode extends Component {
       this.state = {
         delay: 100,
         result: 'À espera de um QR Code...',
+
       }
   
       this.handleScan = this.handleScan.bind(this)
-      this.facingMode = 'rear'
     }
 
     handleScan(data){
@@ -47,13 +47,14 @@ class QRCode extends Component {
         <div className='QRCode'>
           <Navbar />
           <div className='QRCode-container'>
+          <div id="info">{this.state.result}</div>
             <QrReader
               delay={this.state.delay}
+              facingMode="rear"
               style={previewStyle}
               onError={this.handleError}
               onScan={this.handleScan}
-              />
-            <div id="info">{this.state.result}</div>
+            />
           </div>
         </div>
       )
