@@ -7,9 +7,6 @@
 }
 
 video {
-    width: 80vw !important;
-    height: 70vh !important;
-    border: 8px solid white;
     border-radius: 20px;
     background-color: var(--primary-color);
 }

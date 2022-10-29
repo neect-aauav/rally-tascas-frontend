@@ -1,64 +1,43 @@
 import React, { Component } from 'react'
-import QrReader from 'react-qr-scanner'
+import { QrReader } from 'react-qr-reader';
 import './QRCode.css';
 import Navbar from "./Navbar";
+import { useState } from 'react';
 
 const BASE_IRI = process.env.REACT_APP_BASE_IRI ? process.env.REACT_APP_BASE_IRI : "http://localhost:3000";
 
-class QRCode extends Component {
-    constructor(props){
-      super(props)
-      this.state = {
-        delay: 100,
-        result: 'À espera de um QR Code...',
-
-      }
+const QRCode = (props) => {
+  const [data, setData] = useState('Á espera de um QR Code...');
   
-      this.handleScan = this.handleScan.bind(this)
-    }
+  return (
+    <div className='QRCode'>
+      <Navbar />
+      <div className='QRCode-container'>
+        <div id="info">{data}</div>
+        <QrReader
+          onResult={(result, error) => {
+            if (!!result) {
+              setData(result?.text);
 
-    handleScan(data){
-      if (data && data.text) {
-        this.setState({
-          result: data.text,
-        })
+              
+              // redirect to team page if url is valid
+              if (result?.text.includes(BASE_IRI)) {
+                window.location.href = result?.text;
+              }
+              else {
+                setData("QR Code inválido");
+              }
+            }
 
-        // redirect to team page if url is valid
-        if (data.text.includes(BASE_IRI)) {
-          window.location.href = data.text;
-        }
-        else {
-          document.getElementById('info').innerHTML = 'QR Code inválido';
-        }
-      }
-    }
-
-    handleError(err){
-      // add error message to info div
-      document.getElementById('info').innerHTML = err;
-    }
-    
-    render(){
-      const previewStyle = {
-        width: 320,
-      }
-  
-      return(
-        <div className='QRCode'>
-          <Navbar />
-          <div className='QRCode-container'>
-          <div id="info">{this.state.result}</div>
-            <QrReader
-              delay={this.state.delay}
-              facingMode="rear"
-              style={previewStyle}
-              onError={this.handleError}
-              onScan={this.handleScan}
-            />
-          </div>
+            if (!!error) {
+              console.log(error);
+            }
+          }}
+          facingMode="environment"
+        />
         </div>
-      )
-    }
-}
+    </div>
+  );
+};
 
 export default QRCode;
