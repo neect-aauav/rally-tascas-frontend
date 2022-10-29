@@ -102,7 +102,7 @@ body {
 .membernames {
     font-size: 30px;
     line-height: 0.8rem;
-    width: var(--navbar-width);
+    width: 25vw;
     font-size: 30px;
     line-height: 0.8rem;
     white-space: nowrap;
