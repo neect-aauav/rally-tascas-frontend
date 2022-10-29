@@ -48,6 +48,9 @@ body {
 .team-name {
     font-weight: bold;
     font-size: 35px;
+    width: 40vw;
+    overflow: auto;
+    white-space: nowrap;
 }
 
 #equipa {
@@ -233,6 +236,10 @@ input[type="checkbox"]:checked::after {
     .members {
         padding: 10px 0;
     }
+
+    .points-text {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 400px) {
@@ -252,9 +259,4 @@ input[type="checkbox"]:checked::after {
     #total-points img {
         width: 35px;
     }
-
-    .points-text {
-        display: none;
-    }
-    
 }

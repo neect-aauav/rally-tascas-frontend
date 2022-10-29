@@ -22,6 +22,17 @@ function Bares() {
                 buttonwrapper.classList.add("buttonbar")
                 buttonwrapper.onclick = () => {
                     localstor(0, button.id)
+                    
+                    fetch(API_URL+"/api/admin/"+localStorage.getItem("token"), {
+                        method: 'PATCH',
+                        headers: {
+                            'Authorization': 'Token '+localStorage.getItem("token")
+                        },
+                        body: JSON.stringify({
+                            "bar": button.id
+                        })
+                    }).then(response => console.log(response));
+                    
                     window.location.href = "/admin/equipas";
                 }
                 const h1 = document.createElement('h1')
