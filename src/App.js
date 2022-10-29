@@ -9,7 +9,7 @@ import Bares from './components/Bares';
 import Equipas from './components/Equipas';
 import Equipa from './components/Equipa';
 import Membros from './components/Membros';
-import QRCode from './components/QRCode';
+import QRCode from './components/QRCode.js';
 
 import HALLOWEEN_BK from './images/halloween-bk.jpeg';
 

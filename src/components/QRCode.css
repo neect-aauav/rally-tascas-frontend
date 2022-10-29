@@ -1,0 +1,25 @@
+.QRCode {
+    padding: 20px;
+}
+
+.QRCode-container {
+    padding-bottom: 100px;
+}
+
+video {
+    width: 80vw !important;
+    height: 75vh !important;
+    border: 8px solid white;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    background-color: var(--primary-color);
+}
+
+#info {
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 10px;
+    width: 80vw;
+    margin: auto;
+}
