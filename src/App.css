@@ -42,3 +42,11 @@
   height: 120vh;
   width: 120vw;
 }
+body{
+/* import link ./images/halloween-bk.jpeg */
+  background-image: url("./images/halloween-bk.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}

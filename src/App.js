@@ -20,7 +20,7 @@ if (window.location.protocol != "https:" && window.location.hostname != "localho
 function App() {
 
   return (
-    <div style={{ backgroundImage: `url(${HALLOWEEN_BK})` }} className="App">
+    <div className="App">
       <Router>
         <Routes>
           <Route  path="/" element={<Home/>} />
