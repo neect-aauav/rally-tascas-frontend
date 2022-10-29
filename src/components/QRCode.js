@@ -23,7 +23,7 @@ class QRCode extends Component {
 
       // redirect to team page if the url is valid
       if (data.includes(BASE_IRI)) {
-        window.location.href = data.text;
+        window.location.href = data;
       }
       else {
         this.state.result = "QR Code inválido";
