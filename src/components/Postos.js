@@ -108,10 +108,6 @@ function Postos() {
         const nav = document.querySelector(".Navbar");
         nav.querySelector(`a[href="${window.location.pathname}"]`)?.classList.add("selected-nav");
 
-
-        // swiped events
-        document.addEventListener('swiped-right', () => window.location.href = "/membros");
-        document.addEventListener('swiped-left', () => window.location.href = "/premios"); 
     }, []);
     
     
