@@ -1,6 +1,6 @@
 // check authentication token validity
 // pass not applicable paths as an array
-const checkSession = (apiUrl, notApplicablePaths) => {
+const checkSession = (navigate, apiUrl, notApplicablePaths) => {
     if (!notApplicablePaths.includes(window.location.pathname) && window.location.pathname.includes('/admin')) {
   
       const token = localStorage.getItem('token');
@@ -17,27 +17,27 @@ const checkSession = (apiUrl, notApplicablePaths) => {
           .then(data => {
               if (!(data.status && data.status == 200)) {
                   localStorage.removeItem('token');
-                  window.location.href = '/login';
+                  navigate('/login');
               }
           });
       }
       else
-          window.location.href = '/login';
+          navigate('/login');
     }
 }
   
 // check if bar is selected
 // pass not applicable paths as an array
-const checkBar = notApplicablePaths => {
+const checkBar = (navigate, notApplicablePaths) => {
     if (!notApplicablePaths.includes(window.location.pathname) && window.location.pathname.includes('/admin')) {
       if (!localStorage.getItem('bar')) {
-        window.location.href = '/admin/bares';
+        navigate('/admin/bares');
       }
     }
 }
 
 // check if already logged in
-const checkLogin = apiUrl => {
+const checkLogin = (navigate, apiUrl) => {
     const token = localStorage.getItem('token');
     if (window.location.pathname === '/login' && token) {
         // check if token is valid
@@ -52,9 +52,9 @@ const checkLogin = apiUrl => {
         .then(data => {            
             if (data.status && data.status == 200) {
                 if (localStorage.getItem('bar')) {
-                    window.location.href = '/admin/equipas';
+                    navigate('/admin/equipas');
                 } else {
-                    window.location.href = '/admin/bares';
+                    navigate('/admin/bares');
                 }
             }
         }));

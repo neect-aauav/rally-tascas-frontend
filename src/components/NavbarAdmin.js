@@ -1,7 +1,7 @@
 import React from "react";
 import './Navbar.css';
 import NEECT_2 from '../images/NEECT.png';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 import TROPHY from '../images/trophy.png';
 import TEAMS from '../images/team.png';
@@ -15,9 +15,10 @@ import {checkSession, checkBar} from './checksession';
 const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "http://127.0.0.1:8000";
 
 function NavbarAdmin() {
+    const navigate = useNavigate();
     
-    checkSession(API_URL, ['/login']);
-    checkBar(['/login', '/admin/bares']);
+    checkSession(navigate, API_URL, ['/login']);
+    checkBar(navigate, ['/login', '/admin/bares']);
 
     // clear token and redirect to login
     const logout = () => {

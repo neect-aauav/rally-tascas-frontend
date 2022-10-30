@@ -12,7 +12,7 @@ function Login() {
     const navigate = useNavigate();
 
     // check if user is already logged in
-    checkLogin(API_URL);
+    checkLogin(navigate, API_URL);
 
     async function getPostos() {
         const response = await fetch(API_URL+"/api/login",

@@ -69,4 +69,6 @@ body{
   rotate: -90deg;
   filter: invert(1);
   padding: 8px 10px;
+  margin-top: 1px;
+  margin-bottom: -1px;
 }
