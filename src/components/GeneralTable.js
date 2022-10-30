@@ -104,8 +104,9 @@ function GeneralTable() {
                     });
                 }
                 else {
-                    bestTeams.querySelector(".special-prize div:nth-child(1)").innerHTML = bestName;
-                    bestTeams.querySelector(".special-prize div:nth-child(2)").innerHTML = bestCostume;
+                    const textDivs = bestTeams.querySelectorAll(".special-prize div");
+                    textDivs[0].innerHTML = bestName ? bestName : "Por definir...";
+                    textDivs[1].innerHTML = bestCostume ? bestCostume : "Por definir...";
                 }
             });
         }
