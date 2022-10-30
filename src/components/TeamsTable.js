@@ -72,8 +72,6 @@ function TeamsTable() {
     
             // wait for all tables to be created
             Promise.all(setupTables).then(tables => {
-                console.log(tables);
-
 
                 const updateMembersRows = tables => {
                     fetch(API_URL+"/api/scoreboard/members/all")
