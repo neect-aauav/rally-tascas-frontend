@@ -79,7 +79,11 @@ function updateRow(table, oldRow, newRow) {
             row.classList.add('updated-row');
             setTimeout(() => row.classList.remove('updated-row'), 2000);
         }
+
+        return row;
     }
+
+    return oldRow;
 }
 
 export { createTable, fillTableHead, updateRow };

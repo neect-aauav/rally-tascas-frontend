@@ -11,6 +11,10 @@ import PUKE from '../images/puking.png';
 import MEMBERS from '../images/members.png';
 import PUMPKIN from '../images/pumpkin.png';
 
+import NAME from '../images/name.png';
+import COSTUME from '../images/costume.png';
+import SPECIAL_GAME from '../images/special-game.png';
+
 const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "http://127.0.0.1:8000";
 
 function GeneralTable() {
@@ -18,14 +22,30 @@ function GeneralTable() {
     async function getTeamsScoreboard() {
         const response = await fetch(API_URL+"/api/scoreboard/teams");
         const data = await response.json();
-        localStorage.setItem("general-table", JSON.stringify(data));
+        console.log(data);
+        localStorage.setItem("general-table", JSON.stringify(data["scoreboard"]));
+        localStorage.setItem("special-prizes", JSON.stringify(data["special-prizes"]));
         return data;
     }
     
-    function updateTable(table, teams) {        
+    function updateTable(table, teams, specialPrizes) {        
         // old rows
         const oldRows = table.querySelectorAll("tr:not(:first-child)");
-        teams.forEach((team, i) => updateRow(table, oldRows[i], [i+1, ...team]));
+        teams.forEach((team, i) => {
+            const row = updateRow(table, oldRows[i], [i+1, ...team]);
+
+            const nameTd = row.querySelector("td:nth-child(2)");
+            nameTd.querySelector(".special-game")?.remove();
+            if (specialPrizes && specialPrizes[i] && specialPrizes[i]["won_special_game"]) {
+                // add special game
+                const specialGameDiv = document.createElement('div');
+                specialGameDiv.classList.add('special-game');
+                nameTd.appendChild(specialGameDiv);
+                const img = document.createElement('img');
+                img.src = SPECIAL_GAME;
+                specialGameDiv.appendChild(img);
+            }
+        });
     }
 
     useEffect(() => {
@@ -44,8 +64,9 @@ function GeneralTable() {
 
         // fill table from localstorage, if cashed
         const teams = JSON.parse(localStorage.getItem("general-table"));
+        const specialPrizes = JSON.parse(localStorage.getItem("special-prizes"));
         if (teams) {
-            updateTable(table, teams);
+            updateTable(table, teams, specialPrizes);
             loading.remove();
         }
 
@@ -55,7 +76,30 @@ function GeneralTable() {
                 table.querySelector(".loading")?.remove();  
 
                 // update table
-                updateTable(table, teams);
+                updateTable(table, teams["scoreboard"], teams["special-prizes"]);
+
+                document.querySelector("#best-teams")?.remove();
+                // add info on best name and costume to the end of the table
+                const best = document.createElement("div");
+                table.parentElement.appendChild(best);
+                best.style.marginTop = "20px";
+                best.id = "best-teams";
+                const bestTeams = [teams["special-prizes"].find(team => team["best_name"])?.name, teams["special-prizes"].find(team => team["best_team_costume"])?.name];
+                const images = [NAME, COSTUME];
+                bestTeams.forEach((team, i) => {
+                    const bestNameRow = document.createElement('div');
+                    bestNameRow.classList.add('special-prize');
+                    best.appendChild(bestNameRow);
+                    const bestNameImg = document.createElement('img');
+                    bestNameImg.src = images[i];
+                    bestNameRow.appendChild(bestNameImg);
+                    const bestNameText = document.createElement('div');
+                    if (team)
+                        bestNameText.innerHTML = team;
+                    else
+                        bestNameText.innerHTML = "Por definir...";
+                    bestNameRow.appendChild(bestNameText);
+                });
             });
         }
 

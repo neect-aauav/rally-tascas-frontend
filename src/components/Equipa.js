@@ -189,6 +189,27 @@ function Equipa() {
                         body: JSON.stringify(body)
                     }).then((response) => {
                         if (response.status === 200) {
+                            // send special game if checked
+                            if (document.querySelector('#special-game-checkbox') && document.querySelector('#special-game-checkbox').checked) {
+                                fetch(API_URL+"/api/teams/"+id, {
+                                    method: 'PATCH',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'Authorization': 'Token ' + localStorage.getItem('token')
+                                    },
+                                    body: JSON.stringify({
+                                        "won_special_game": true
+                                    })
+                                }).then((response) => {
+                                    if (response.status === 200) {
+                                        window.location.href = "/admin/qrcode";
+                                    }
+                                    else {
+                                        alert("Ocorreu um erro ao enviar o jogo especial!");
+                                    }
+                                });
+                            }
+
                             window.location.href = "/admin/qrcode";
                         }
                         else {

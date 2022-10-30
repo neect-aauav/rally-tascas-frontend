@@ -11,6 +11,9 @@ import EGG from '../images/egg-black.png';
 import DRINKS from '../images/shot-glass-black.png';
 import PUKE from '../images/puking.png';
 import MEMBERS from '../images/members.png';
+import NAME from '../images/name.png';
+import COSTUME from '../images/costume.png';
+import SPECIAL_GAME from '../images/special-game.png';
 
 function Home() {
 
@@ -55,6 +58,18 @@ function Home() {
                     <div className="table-key-item">
                         <img src={MEMBERS} alt="members" />
                         <div>Membros</div>
+                    </div>
+                    <div className="table-key-item special-game-item">
+                        <img src={SPECIAL_GAME} alt="special game" />
+                        <div>Cumpriu o Desafio Final</div>
+                    </div>
+                    <div className="table-key-item prize-item">
+                        <img src={NAME} alt="name" />
+                        <div>Nome mais original</div>
+                    </div>
+                    <div className="table-key-item prize-item">
+                        <img src={COSTUME} alt="costume" />
+                        <div>Disfarce coletivo mais original</div>
                     </div>
                 </div>
             </div>

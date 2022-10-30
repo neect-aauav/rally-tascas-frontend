@@ -2,3 +2,38 @@
     background-color: #bbbbbb;
     cursor: pointer;
 }
+
+.special-game {
+    position: absolute;
+    width: 25px;
+    right: 0;
+    top: 0;
+}
+
+.special-game img {
+    width: 100%;
+}
+
+.special-prize {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    width: 100%;
+    padding: 10px;
+}
+
+.special-prize img {
+    width: 30px;
+    filter: invert(1);
+    margin-left: 10px;
+}
+
+.special-prize > div {
+    color: white;
+    font-weight: bold;
+    font-size: 23px !important;
+    white-space: nowrap;
+    width: 65vw;
+    overflow: auto;
+    text-align: left;
+}

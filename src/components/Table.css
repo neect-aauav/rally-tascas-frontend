@@ -2,8 +2,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 5px 5px 10px 5px rgb(0 0 0 / 10%);
     margin: 0px 30px;
+}
+
+.table table {
+    box-shadow: 5px 5px 10px 5px rgb(0 0 0 / 10%);
 }
 
 .table>div:first-child {
@@ -19,6 +22,7 @@
     padding: 10px;
     white-space: nowrap;
     text-align: left;
+    position: relative;
 }
 
 .table tr:nth-child(2) {
@@ -103,6 +107,14 @@ table th {
     border-radius: 40px;
 }
 
+.prize-item {
+    background-color: #b1347f;
+}
+
+.special-game-item {
+    background-color: #f7005f;
+}
+
 .table-key-item > img {
     width: 25px;
     filter: invert(1);
@@ -112,6 +124,15 @@ table th {
     color: white;
     font-weight: bold;
     font-size: 20px !important;
+}
+
+.table tr:nth-child(2)[class='updated-row'] {
+    color: white;
+}
+
+.updated-row {
+    color: orange;
+    font-weight: bold;
 }
 
 @media screen and (max-width: 470px) {
@@ -128,9 +149,4 @@ table th {
     .table-key > h1 {
         font-size: 20px !important;
     }
-}
-
-.updated-row {
-    color: red;
-    font-weight: bold;
 }
