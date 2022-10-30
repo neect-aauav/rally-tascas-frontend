@@ -14,6 +14,20 @@ import PUMPKIN from '../images/pumpkin.png';
 const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "http://127.0.0.1:8000";
 
 function GeneralTable() {
+
+    async function getTeamsScoreboard() {
+        const response = await fetch(API_URL+"/api/scoreboard/teams");
+        const data = await response.json();
+        localStorage.setItem("general-table", JSON.stringify(data));
+        return data;
+    }
+    
+    function updateTable(table, teams) {        
+        // old rows
+        const oldRows = table.querySelectorAll("tr:not(:first-child)");
+        teams.forEach((team, i) => updateRow(table, oldRows[i], [i+1, ...team]));
+    }
+
     useEffect(() => {
         const home = document.querySelector("#general-table");
 
@@ -35,7 +49,7 @@ function GeneralTable() {
             loading.remove();
         }
 
-        setInterval(() => {
+        const updateGeneralTable = () => {
             getTeamsScoreboard().then(teams => {
                 // remove loading
                 table.querySelector(".loading")?.remove();  
@@ -43,7 +57,10 @@ function GeneralTable() {
                 // update table
                 updateTable(table, teams);
             });
-        }, 1000);
+        }
+
+        updateGeneralTable();
+        setInterval(() => updateGeneralTable(), 1000);
 
         // pumpkin image
         const pumpkin = document.createElement('img');
@@ -57,17 +74,5 @@ function GeneralTable() {
     );
 }
 
-async function getTeamsScoreboard() {
-    const response = await fetch(API_URL+"/api/scoreboard/teams");
-    const data = await response.json();
-    localStorage.setItem("general-table", JSON.stringify(data));
-    return data;
-}
-
-function updateTable(table, teams) {        
-    // old rows
-    const oldRows = table.querySelectorAll("tr:not(:first-child)");
-    teams.forEach((team, i) => updateRow(table, oldRows[i], [i+1, ...team]));
-}
 
 export default GeneralTable;

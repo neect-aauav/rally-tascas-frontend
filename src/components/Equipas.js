@@ -29,7 +29,6 @@ function Equipas() {
                 parent.appendChild(buttonwrapper)
                 buttonwrapper.classList.add("buttonbar")
                 buttonwrapper.onclick = () => {
-                    localstor(0, button.id)
                     window.location.href = "/admin/equipas/"+button.id;
                 }
                 const h1 = document.createElement('h1')
@@ -46,11 +45,6 @@ function Equipas() {
         writebutton(data,document.querySelector("#tabelaequipas"));
     });
 
-    function localstor(flag,postoname) {
-        if (flag === 0) {
-            localStorage.setItem('teamid', postoname);
-        }
-    }
     return (
         <div className="Bares">
             <Navbar />

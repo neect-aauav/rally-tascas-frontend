@@ -10,52 +10,69 @@ const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : 
 
 function Membros() {
 
-    fetch(API_URL+"/api/bars")
-        .then(response => response.json())
-        .then(bars => {
+    const getBars = async () => {
+        if (localStorage.getItem("bars-data"))
+            return JSON.parse(localStorage.getItem("bars-data"));
+    
+        const response = await fetch(API_URL+"/api/bars");
+        const data = await response.json();
+        localStorage.setItem("bars-data", JSON.stringify(data));
+        console.log(data);
+        return data;
+    }
+    
+    function updateTable(table, rows) {  
+        // old rows
+        const oldRows = table.querySelectorAll("tr:not(:first-child)");
+        rows.forEach((row, i) => updateRow(table, oldRows[i], [i+1, ...row]));      
+    }
 
-            // create table
-            const tableWrapper = document.querySelector(".membros-container");
-            const table = createTable(tableWrapper, "Membros");
-            fillTableHead(table, [RANKING, "Nome", ...bars.map(bar => String(bar.id)).sort((a, b) => a-b), POINTS]);
+    getBars().then(bars => {
 
-            // loading
-            const loading = document.createElement('div');
-            loading.classList.add('loading');
-            loading.innerHTML = "Loading...";
-            table.appendChild(loading);
+        // create table
+        const tableWrapper = document.querySelector(".membros-container");
+        const table = createTable(tableWrapper, "Membros");
+        fillTableHead(table, [RANKING, "Nome", ...bars.map(bar => String(bar.id)).sort((a, b) => a-b), POINTS]);
 
-            // fill table from localstorage, if cashed
-            const members = JSON.parse(localStorage.getItem("members-table"));
-            if (members) {
-                loading.remove();
-                updateTable(table, members);
-            }
+        // loading
+        const loading = document.createElement('div');
+        loading.classList.add('loading');
+        loading.innerHTML = "Loading...";
+        table.appendChild(loading);
 
-            // continously update members rows
-            setInterval(() => {
-                fetch(API_URL+"/api/scoreboard/members")
-                    .then(response => response.json())
-                    .then(rows => {
-                        localStorage.setItem("members-table", JSON.stringify(rows));
+        // fill table from localstorage, if cashed
+        const members = JSON.parse(localStorage.getItem("members-table"));
+        if (members) {
+            loading.remove();
+            updateTable(table, members);
+        }
 
-                        // remove loading
-                        table.querySelector(".loading")?.remove();
+        const updateMembersTable = () => {
+            fetch(API_URL+"/api/scoreboard/members")
+            .then(response => response.json())
+            .then(rows => {
+                localStorage.setItem("members-table", JSON.stringify(rows));
 
-                        updateTable(table, rows);
-                    });
-            }, 1000);
+                // remove loading
+                table.querySelector(".loading")?.remove();
 
-            document.addEventListener("click", e => {
-                const target = e.target;
-
-                if (target.tagName === "TH") {
-                    if (!isNaN(target.innerText)) {
-                        window.location.href = "postos";
-                    }
-                }
+                updateTable(table, rows);
             });
+        };
+
+        updateMembersTable();
+        setInterval(() => updateMembersTable(), 1000);
+
+        document.addEventListener("click", e => {
+            const target = e.target;
+
+            if (target.tagName === "TH") {
+                if (!isNaN(target.innerText)) {
+                    window.location.href = "postos";
+                }
+            }
         });
+    });
 
     useEffect(() => {
         // select navbar tab
@@ -70,12 +87,6 @@ function Membros() {
             <div className="membros-container"></div>
         </div>
     )
-}
-
-function updateTable(table, rows) {  
-    // old rows
-    const oldRows = table.querySelectorAll("tr:not(:first-child)");
-    rows.forEach((row, i) => updateRow(table, oldRows[i], [i+1, ...row]));      
 }
 
 export default Membros;
