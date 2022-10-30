@@ -78,28 +78,36 @@ function GeneralTable() {
                 // update table
                 updateTable(table, teams["scoreboard"], teams["special-prizes"]);
 
-                document.querySelector("#best-teams")?.remove();
+                const bestName = teams["special-prizes"].find(team => team["best_name"])?.name;
+                const bestCostume = teams["special-prizes"].find(team => team["best_team_costume"])?.name;
                 // add info on best name and costume to the end of the table
-                const best = document.createElement("div");
-                table.parentElement.appendChild(best);
-                best.style.marginTop = "20px";
-                best.id = "best-teams";
-                const bestTeams = [teams["special-prizes"].find(team => team["best_name"])?.name, teams["special-prizes"].find(team => team["best_team_costume"])?.name];
-                const images = [NAME, COSTUME];
-                bestTeams.forEach((team, i) => {
-                    const bestNameRow = document.createElement('div');
-                    bestNameRow.classList.add('special-prize');
-                    best.appendChild(bestNameRow);
-                    const bestNameImg = document.createElement('img');
-                    bestNameImg.src = images[i];
-                    bestNameRow.appendChild(bestNameImg);
-                    const bestNameText = document.createElement('div');
-                    if (team)
-                        bestNameText.innerHTML = team;
-                    else
-                        bestNameText.innerHTML = "Por definir...";
-                    bestNameRow.appendChild(bestNameText);
-                });
+                const bestTeams = document.querySelector("#best-teams");
+                if (!bestTeams) {
+                    const best = document.createElement("div");
+                    table.parentElement.appendChild(best);
+                    best.style.marginTop = "20px";
+                    best.id = "best-teams";
+                    const bestTeams = [bestName, bestCostume];
+                    const images = [NAME, COSTUME];
+                    bestTeams.forEach((team, i) => {
+                        const bestNameRow = document.createElement('div');
+                        bestNameRow.classList.add('special-prize');
+                        best.appendChild(bestNameRow);
+                        const bestNameImg = document.createElement('img');
+                        bestNameImg.src = images[i];
+                        bestNameRow.appendChild(bestNameImg);
+                        const bestNameText = document.createElement('div');
+                        if (team)
+                            bestNameText.innerHTML = team;
+                        else
+                            bestNameText.innerHTML = "Por definir...";
+                        bestNameRow.appendChild(bestNameText);
+                    });
+                }
+                else {
+                    bestTeams.querySelector(".special-prize div:nth-child(1)").innerHTML = bestName;
+                    bestTeams.querySelector(".special-prize div:nth-child(2)").innerHTML = bestCostume;
+                }
             });
         }
 
