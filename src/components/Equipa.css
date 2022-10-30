@@ -4,7 +4,7 @@ body {
 }
 
 .team-container {
-    padding-top: 100px;
+    padding-top: 70px;
     padding-bottom: 100px;
 }
 
@@ -14,14 +14,14 @@ body {
     align-items: center;
     background-color: #F7F7F7;
     box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.1);
-    border-radius: 40px;
     margin: 0 30px;
     padding: 20px 0;
 }
 
 #total-points {
-    position: absolute;
-    top: -80px;
+    position: fixed;
+    top: 0;
+    z-index: 10;
     transform: unset;
     left: 0;
     right: 0;
@@ -32,7 +32,6 @@ body {
     padding-left: 40px;
     background-color: var(--primary-color);
     color: white;
-    border-radius: 20px;
 }
 #total-points img {
     filter: invert(1);
@@ -195,14 +194,14 @@ input[type="checkbox"]:checked::after {
 }
 
 .warning-top-message {
-    top: 0;
+    bottom: 69px;
     position: fixed;
-    bottom: auto;
     background-color: #ff0052;
     width: 100%;
     padding: 10px 0;
     color: white;
     cursor: pointer;
+    z-index: 10;
 }
 
 .warning-top-message:hover {
@@ -212,6 +211,10 @@ input[type="checkbox"]:checked::after {
 @media screen and (min-width: 1024px) {
     .team-container {
         padding-left: var(--navbar-width);
+    }
+
+    .warning-top-message {
+        bottom: 0;
     }
 }
 
@@ -250,21 +253,17 @@ input[type="checkbox"]:checked::after {
 
     .memberpoints-view {
         right: -32px;
-    }    
+    }
+
+    .wrapper img {
+        width: 30px;
+    }
 }
 
 @media screen and (max-width: 490px) {
-    .team-container {
-        padding-top: 80px;
-    }
-
     .wrapper {
         margin: 0;
         border-radius: 0;
-    }
-    
-    #total-points {
-        top: -65px;
     }
 
     #total-points img {

@@ -20,13 +20,14 @@ function Equipa() {
     const { id } = useParams();
 
     // fetch info on the bar
-    fetch(API_URL + '/api/bars/' + localStorage.bar)
+    fetch(API_URL + '/api/bars/' + localStorage.getItem('bar'))
         .then(response => response.json())
         .then(bar => {
             if (bar.name !== "ESSUA") document.querySelector("#special-game").style.display = "none";
 
             getTeam(id).then((data) => {
-                const visited = data.bars[localStorage.bar]?.visited;
+                console.log(data);
+                const visited = data.bars.find(bar => bar.id == localStorage.getItem('bar'))?.visited;
                 if (visited) {
                     // create warning top message
                     const warning = document.createElement('div');
