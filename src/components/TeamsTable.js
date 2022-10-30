@@ -48,12 +48,10 @@ function TeamsTable() {
                 setupTables.push(new Promise((resolve, reject) => {
                     const home = document.querySelector("#teams-tables");
                     
-                    if (home) {
-                        // add link anchor bottom before table
-                        const anchor = document.createElement('div');
-                        anchor.class = "achor";
-                        home.appendChild(anchor);
-                    }
+                    // add link anchor bottom before table
+                    const anchor = document.createElement('div');
+                    anchor.class = "achor";
+                    home.appendChild(anchor);
 
                     const table = createTable(home, "Loading...");
                     tables.push(table);
@@ -74,6 +72,8 @@ function TeamsTable() {
     
             // wait for all tables to be created
             Promise.all(setupTables).then(tables => {
+                console.log(tables);
+
 
                 const updateMembersRows = tables => {
                     fetch(API_URL+"/api/scoreboard/members/all")
