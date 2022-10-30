@@ -1,12 +1,14 @@
 import QrReader from 'modern-react-qr-reader'
 import './QRCode.css';
 import Navbar from "./NavbarAdmin";
-import { Component } from 'react';
+import { useNavigate } from 'react-router-dom';
 import React,{useState,useEffect} from "react";
 
 const BASE_IRI = process.env.REACT_APP_BASE_IRI ? process.env.REACT_APP_BASE_IRI : "http://localhost:3000";
 
 const QRCode = () => {
+  const navigate = useNavigate();
+
   const [result, setResult] = useState('À espera de um QR Code...');
 
   useEffect(() => {
@@ -21,7 +23,7 @@ const QRCode = () => {
 
       // redirect to team page if the url is valid
       if (data.includes(BASE_IRI)) {
-        window.location.href = data;
+        navigate(data);
       }
       else {
         setResult("QR Code inválido");

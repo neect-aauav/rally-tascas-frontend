@@ -1,6 +1,7 @@
 import './Equipa.css';
 import Navbar from "./NavbarAdmin";
 import { useParams } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 import SHOT_GLASS from '../images/shot-glass.png';
 import PUKE from '../images/puke.png';
@@ -13,6 +14,8 @@ import CHECKPOINT from '../images/checkpoint.png';
 const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "http://127.0.0.1:8000";
     
 function Equipa() {
+    const navigate = useNavigate();
+
     const drinkPointsValue = 10, pukePointsValue = -50, specialGamePointsValue = 100;
     const pukedPoints = {};
     
@@ -202,7 +205,7 @@ function Equipa() {
                                     })
                                 }).then((response) => {
                                     if (response.status === 200) {
-                                        window.location.href = "/admin/qrcode";
+                                        navigate("/admin/qrcode");
                                     }
                                     else {
                                         alert("Ocorreu um erro ao enviar o jogo especial!");
@@ -210,7 +213,7 @@ function Equipa() {
                                 });
                             }
 
-                            window.location.href = "/admin/qrcode";
+                            navigate("/admin/qrcode");
                         }
                         else {
                             alert("Ocorreu um erro. Por favor tenta novamente.");

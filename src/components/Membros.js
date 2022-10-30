@@ -6,12 +6,13 @@ import { createTable, fillTableHead, updateRow } from './Table.js';
 import POINTS from '../images/point.png';
 import RANKING from '../images/ranking.png';
 import PUMPKIN from '../images/pumpkin.png';
+import { useNavigate } from "react-router-dom";
 
-import 'swiped-events';import 'swiped-events';
 
 const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "http://127.0.0.1:8000";
 
 function Membros() {
+    const navigate = useNavigate();
 
     const getBars = async () => {
         if (localStorage.getItem("bars-data"))
@@ -77,7 +78,7 @@ function Membros() {
 
             if (target.tagName === "TH") {
                 if (!isNaN(target.innerText)) {
-                    window.location.href = "postos";
+                    navigate("postos");
                 }
             }
         });
@@ -87,10 +88,6 @@ function Membros() {
         // select navbar tab
         const nav = document.querySelector(".Navbar");
         nav.querySelector(`a[href="${window.location.pathname}"]`)?.classList.add("selected-nav");
-
-        // swiped events
-        document.addEventListener('swiped-right', () => window.location.href = "/");
-        document.addEventListener('swiped-left', () => window.location.href = "/postos"); 
     }, []);
 
     return (

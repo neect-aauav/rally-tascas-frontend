@@ -8,7 +8,7 @@ import RANKING from '../images/ranking.png';
 const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "http://127.0.0.1:8000";
 
 function TeamsTable() {
-   
+    
     async function getNumberTeams() {
         if (localStorage.getItem("teams-size"))
             return JSON.parse(localStorage.getItem("teams-size"));
@@ -86,16 +86,6 @@ function TeamsTable() {
 
                 updateMembersRows(tables);
                 setInterval(() => updateMembersRows(tables), 3000);
-            });
-
-            document.addEventListener("click", e => {
-                const target = e.target;
-
-                if (target.tagName === "TH") {
-                    if (!isNaN(target.innerText)) {
-                        window.location.href = "postos";
-                    }
-                }
             });
         });
     });

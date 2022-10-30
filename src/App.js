@@ -10,8 +10,11 @@ import Equipas from './components/Equipas';
 import Equipa from './components/Equipa';
 import Membros from './components/Membros';
 import QRCode from './components/QRCode.js';
+import { useNavigate } from "react-router-dom";
 
 import ARROW from './images/arrow.png';
+
+import 'swiped-events';
 
 // force https
 if (window.location.protocol != "https:" && window.location.hostname != "localhost")
@@ -27,15 +30,42 @@ function App() {
       document.querySelector(".go-up").style.display = "none";
     }
   }
+  
+  const navigate = useNavigate();
 
   useEffect(() => {
+    const routesToSkip = ["/postos"];
+
+    document.addEventListener('swiped-right', () => {
+      if (!routesToSkip.includes(window.location.pathname) && !window.location.pathname.includes("/admin")) {
+        const nav = document.querySelector(".Navbar");
+        const selected = nav.querySelector(".selected-nav");
+        let prev = selected.previousElementSibling;
+        if (prev)
+          navigate(prev.getAttribute("href"));
+        else
+          navigate(nav.lastElementChild.previousElementSibling.getAttribute("href"));
+        }
+    });
+
+    document.addEventListener('swiped-left', () => {
+      if (!routesToSkip.includes(window.location.pathname) && !window.location.pathname.includes("/admin")) {
+        const nav = document.querySelector(".Navbar");
+        const selected = nav.querySelector(".selected-nav");
+        const next = selected.nextElementSibling.classList.contains("logo") ? nav.firstElementChild : selected.nextElementSibling;
+        if (next)
+          navigate(next.getAttribute("href"));
+        else
+          navigate(nav.firstElementChild.getAttribute("href"));
+        }
+    });
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <div className="App">
-      <Router>
         <Routes>
           <Route  path="/" element={<Home/>} />
           <Route  path="/login" element={<Login/>} />
@@ -47,7 +77,6 @@ function App() {
           <Route  path="/admin/equipas" element={<Equipas/>} />
           <Route  path="/admin/equipas/:id" element={<Equipa/>} />
         </Routes>
-      </Router>
 
        {/* go up button */}
        <div style={{display: "none"}} className="go-up" onClick={() => window.scrollTo(0, 0)}>

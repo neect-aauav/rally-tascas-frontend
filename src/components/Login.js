@@ -4,10 +4,13 @@ import Navbar from "./NavbarAdmin";
 import {ToastContainer,toast,Zoom,Bounce} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {checkLogin} from './checksession';
+import { useNavigate } from "react-router-dom";
 
 const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "http://127.0.0.1:8000";
 
 function Login() {
+    const navigate = useNavigate();
+
     // check if user is already logged in
     checkLogin(API_URL);
 
@@ -54,7 +57,7 @@ function Login() {
                 // reset bar for new admin user
                 localStorage.removeItem('bar');
                 
-                window.location.href = "/admin/bares"
+                navigate("/admin/bares")
         }else{
             console.log("Something went wrong");
         }

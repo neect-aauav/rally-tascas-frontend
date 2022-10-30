@@ -1,10 +1,12 @@
 import React,{useState,useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 import './Bares.css';
 import Navbar from "./NavbarAdmin";
 
 const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "http://127.0.0.1:8000";
 
 function Equipas() {
+    const navigate = useNavigate();
 
     useEffect(() => {
         // select navbar tab
@@ -29,7 +31,7 @@ function Equipas() {
                 parent.appendChild(buttonwrapper)
                 buttonwrapper.classList.add("buttonbar")
                 buttonwrapper.onclick = () => {
-                    window.location.href = "/admin/equipas/"+button.id;
+                    navigate("/admin/equipas/"+button.id);
                 }
                 const h1 = document.createElement('h1')
                 buttonwrapper.appendChild(h1)
