@@ -30,15 +30,17 @@ function TeamsTable() {
     }
 
     function updateTable(table, team) {
-        // update anchor
-        table.parentElement.previousSibling.id = team.team.replaceAll(" ", "-");
-        
-        // update table name
-        table.parentElement.querySelector(".equipa").innerHTML = team.team;
+        if (table) {
+            // update anchor
+            table.parentElement.previousSibling.id = team.team.replaceAll(" ", "-");
+            
+            // update table name
+            table.parentElement.querySelector(".equipa").innerHTML = team.team;
 
-        // old rows
-        const oldRows = table.querySelectorAll("tr:not(:first-child)");
-        team.members.forEach((member, i) => updateRow(table, oldRows[i], [i+1, ...member]));
+            // old rows
+            const oldRows = table.querySelectorAll("tr:not(:first-child)");
+            team.members.forEach((member, i) => updateRow(table, oldRows[i], [i+1, ...member]));
+        }
     }
 
     useEffect(() => {
