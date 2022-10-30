@@ -51,7 +51,7 @@ function App() {
       </Router>
 
        {/* go up button */}
-       <div className="go-up" onClick={() => window.scrollTo(0, 0)}>
+       <div style={{display: "none"}} className="go-up" onClick={() => window.scrollTo(0, 0)}>
           <div className="go-up-arrow"><img src={ARROW}></img></div>
         </div>
     </div>
