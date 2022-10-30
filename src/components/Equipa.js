@@ -13,7 +13,7 @@ import CHECKPOINT from '../images/checkpoint.png';
 const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "http://127.0.0.1:8000";
     
 function Equipa() {
-    const drinkPointsValue = 10, pukePointsValue = -20, specialGamePointsValue = 50;
+    const drinkPointsValue = 10, pukePointsValue = -50, specialGamePointsValue = 100;
     const pukedPoints = {};
     
     // get team id from url
@@ -26,7 +26,7 @@ function Equipa() {
             if (bar.name !== "ESSUA") document.querySelector("#special-game").style.display = "none";
 
             getTeam(id).then((data) => {
-                const visited = data.bars[localStorage.bar].visited;
+                const visited = data.bars[localStorage.bar]?.visited;
                 if (visited) {
                     // create warning top message
                     const warning = document.createElement('div');
@@ -98,15 +98,24 @@ function Equipa() {
                     checkbox.classList.add('checkbox-puked')
                     checkbox.value = false
                     checkbox.addEventListener('input', () => {
+                        const memberPointsView = document.querySelector(`.memberwrapper[data-member-id="${member.id}"] .memberpoints-view`);
                         if (checkbox.checked) {
                             pukedPoints[member.id] = pukePointsValue;
-                            addPoints(pukePointsValue);
+                            addPoints(memberPointsView, pukePointsValue);
+                            addPoints(document.querySelector('.points-value'), pukePointsValue);
                         }
                         else {
                             pukedPoints[member.id] = 0;
-                            removePoints(pukePointsValue);
+                            removePoints(memberPointsView, pukePointsValue);
+                            removePoints(document.querySelector('.points-value'), pukePointsValue);
                         }
                     });
+
+                    // member points view
+                    const points = document.createElement('div')
+                    memberwrapper.appendChild(points)
+                    points.classList.add('memberpoints-view')
+                    points.innerText = drinkPointsValue;
                 });
 
                 // egg wrapper
@@ -142,9 +151,10 @@ function Equipa() {
                         const member_id = parseInt(member.getAttribute('data-member-id'));
                         const drinks = parseInt(member.querySelector('.dropdown').value);
                         const gamePoints = document.querySelector('#game-checkbox').checked ? bar.game.points : 0;
+                        const specialGamePoints = document.querySelector('#special-game-checkbox') && document.querySelector('#special-game-checkbox').checked ? specialGamePointsValue : 0;
                         members_values.push({
                             "id": member_id,
-                            "points": (drinks * drinkPointsValue) + parseFloat(gamePoints/members.length) + pukedPoints[member_id],
+                            "points": (drinks * drinkPointsValue) + parseFloat(gamePoints/members.length) + pukedPoints[member_id] + parseFloat(specialGamePoints/members.length),
                             "drinks": drinks
                         });
                         
@@ -190,39 +200,67 @@ function Equipa() {
         // add event listener to inputs
         document.addEventListener('input', e => {
             const target = e.target;
+            let memberPointsView;
 
             // increase drink of member
             let dropdown;
             if ((dropdown = target.closest(".memberwrapper .dropdown"))) {
                 const n_drinks = parseInt(dropdown.value);
                 const difference = (n_drinks - Number(dropdown.getAttribute('data-drinks'))) * drinkPointsValue;
-                addPoints(difference);
+                addPoints(document.querySelector('.points-value'), difference);
 
                 // update current n_drinks
                 dropdown.setAttribute('data-drinks', n_drinks);
-            }
 
-            // increase points from game
-            if ((dropdown = target.closest(".game .dropdown"))) {
-                const points = parseInt(dropdown.value);
-                const difference = points - Number(dropdown.getAttribute('data-points'));
-                addPoints(difference);
-
-                // update current points
-                dropdown.setAttribute('data-points', points);
+                // update member points view
+                memberPointsView = document.querySelector(`.memberwrapper[data-member-id="${dropdown.id.split('_')[1]}"] .memberpoints-view`);
+                addPoints(memberPointsView, difference);
             }
 
             // check if completed game
             let checkbox;
             if ((checkbox = target.closest("#game-checkbox"))) {
-                if (checkbox.checked) addPoints(bar.game.points)
-                else removePoints(bar.game.points)
+                if (checkbox.checked) {
+                    addPoints(document.querySelector('.points-value'), bar.game.points);
+
+                    // update member points view
+                    document.querySelectorAll('.memberwrapper').forEach(member => {
+                        memberPointsView = member.querySelector(`.memberpoints-view`);
+                        console.log(memberPointsView);
+                        addPoints(memberPointsView, bar.game.points / document.querySelectorAll('.memberwrapper').length);
+                    });
+                }
+                else {
+                    removePoints(document.querySelector('.points-value'), bar.game.points);
+
+                    // update member points view
+                    document.querySelectorAll('.memberwrapper').forEach(member => {
+                        memberPointsView = member.querySelector(`.memberpoints-view`);
+                        removePoints(memberPointsView, bar.game.points / document.querySelectorAll('.memberwrapper').length);
+                    });
+                }
             }
 
             // check if team drank egg
             if ((checkbox = target.closest("#special-game-checkbox"))) {
-                if (checkbox.checked) addPoints(specialGamePointsValue)
-                else removePoints(specialGamePointsValue)
+                if (checkbox.checked) {
+                    addPoints(document.querySelector('.points-value'), specialGamePointsValue);
+                    
+                    // update member points view
+                    document.querySelectorAll('.memberwrapper').forEach(member => {
+                        memberPointsView = member.querySelector(`.memberpoints-view`);
+                        addPoints(memberPointsView, specialGamePointsValue / document.querySelectorAll('.memberwrapper').length);
+                    });
+                }
+                else {
+                    removePoints(document.querySelector('.points-value'), specialGamePointsValue);
+                    
+                    // update member points view
+                    document.querySelectorAll('.memberwrapper').forEach(member => {
+                        memberPointsView = member.querySelector(`.memberpoints-view`);
+                        removePoints(memberPointsView, specialGamePointsValue / document.querySelectorAll('.memberwrapper').length);
+                    });
+                }
             }
 
         });
@@ -280,14 +318,14 @@ async function getTeam(id) {
     return data;
 }
 
-const addPoints = points => {
-    const currentPoints = parseInt(document.querySelector('.points-value').innerText);
-    document.querySelector('.points-value').innerText = currentPoints + points;
+const addPoints = (scoreboard, points) => {
+    const currentPoints = parseInt(scoreboard.innerText);
+    scoreboard.innerText = currentPoints + points;
 }
 
-const removePoints = points => {
-    const currentPoints = parseInt(document.querySelector('.points-value').innerText);
-    document.querySelector('.points-value').innerText = currentPoints - points;
+const removePoints = (scoreboard, points) => {
+    const currentPoints = parseInt(scoreboard.innerText);
+    scoreboard.innerText = currentPoints - points;
 }
 
 export default Equipa;

@@ -86,6 +86,7 @@ body {
     flex-direction: row;
     column-gap: 20px;
     align-items: center;
+    position: relative;
 }
 
 .wrapper img {
@@ -114,6 +115,12 @@ body {
     align-items: center;
     display: flex;
     column-gap: inherit;
+}
+
+.memberpoints-view {
+    position: absolute;
+    right: -52px;
+    font-size: 18px;
 }
 
 .dropdown {
@@ -208,7 +215,7 @@ input[type="checkbox"]:checked::after {
     }
 }
 
-@media screen and (max-width: 570px) {
+@media screen and (max-width: 650px) {
     .team-container * {
         font-size: 20px !important;
     }
@@ -240,9 +247,13 @@ input[type="checkbox"]:checked::after {
     .points-text {
         display: none;
     }
+
+    .memberpoints-view {
+        right: -32px;
+    }    
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 490px) {
     .team-container {
         padding-top: 80px;
     }
@@ -258,5 +269,5 @@ input[type="checkbox"]:checked::after {
 
     #total-points img {
         width: 35px;
-    }
+    } 
 }

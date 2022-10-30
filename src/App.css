@@ -50,3 +50,23 @@ body{
   background-position: center;
   background-attachment: fixed;
 }
+
+.go-up {
+  position: fixed;
+  right: 10px;
+  bottom: 80px;
+  align-items: center;
+}
+
+.go-up-arrow {
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  border: 3px solid white;
+}
+
+.go-up-arrow img {
+  width: 20px;
+  rotate: -90deg;
+  filter: invert(1);
+  padding: 8px 10px;
+}
