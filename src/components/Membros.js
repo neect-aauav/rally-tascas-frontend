@@ -5,6 +5,7 @@ import { createTable, fillTableHead, updateRow } from './Table.js';
 
 import POINTS from '../images/point.png';
 import RANKING from '../images/ranking.png';
+import PUMPKIN from '../images/pumpkin.png';
 
 const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "http://127.0.0.1:8000";
 
@@ -62,6 +63,12 @@ function Membros() {
 
         updateMembersTable();
         setInterval(() => updateMembersTable(), 1000);
+
+        // pumpkin image
+        const pumpkin = document.createElement('img');
+        pumpkin.src = PUMPKIN;
+        pumpkin.classList.add('pumpkin');
+        document.querySelector(".equipa").appendChild(pumpkin);
 
         document.addEventListener("click", e => {
             const target = e.target;

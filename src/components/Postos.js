@@ -3,6 +3,8 @@ import './Postos.css';
 import Navbar from "./Navbar";
 import { MapContainer,TileLayer,Marker,Popup } from 'react-leaflet';
 
+import PUMPKIN from '../images/pumpkin.png';
+
 const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "http://127.0.0.1:8000";
 
 function Postos() {
@@ -93,7 +95,13 @@ function Postos() {
                     });
                 });
         });
-        
+       
+        // pumpkin image
+        const pumpkin = document.createElement('img');
+        pumpkin.src = PUMPKIN;
+        pumpkin.classList.add('pumpkin');
+        document.querySelector(".equipas").appendChild(pumpkin);
+
         // select navbar tab
         const nav = document.querySelector(".Navbar");
         nav.querySelector(`a[href="${window.location.pathname}"]`)?.classList.add("selected-nav");

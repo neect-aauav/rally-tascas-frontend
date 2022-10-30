@@ -36,4 +36,29 @@ const checkBar = notApplicablePaths => {
     }
 }
 
-export {checkSession, checkBar};
+// check if already logged in
+const checkLogin = apiUrl => {
+    const token = localStorage.getItem('token');
+    if (window.location.pathname === '/login' && token) {
+        // check if token is valid
+        return (fetch(apiUrl+'/api/token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({token: token}),
+        })
+        .then(res => res.json())
+        .then(data => {            
+            if (data.status && data.status == 200) {
+                if (localStorage.getItem('bar')) {
+                    window.location.href = '/admin/equipas';
+                } else {
+                    window.location.href = '/admin/bares';
+                }
+            }
+        }));
+    }
+}
+
+export {checkSession, checkBar, checkLogin};

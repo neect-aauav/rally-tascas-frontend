@@ -11,7 +11,6 @@ import Equipa from './components/Equipa';
 import Membros from './components/Membros';
 import QRCode from './components/QRCode.js';
 
-import HALLOWEEN_BK from './images/halloween-bk.jpeg';
 import ARROW from './images/arrow.png';
 
 // force https
