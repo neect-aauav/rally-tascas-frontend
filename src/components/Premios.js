@@ -11,8 +11,8 @@ function Premios() {
     
 
         // swiped events
-        document.addEventListener('swiped-left', () => window.location.href = "/postos");
-        document.addEventListener('swiped-right', () => window.location.href = "/"); 
+        document.addEventListener('swiped-right', () => window.location.href = "/postos");
+        document.addEventListener('swiped-left', () => window.location.href = "/"); 
     }, []);    
 
     return (

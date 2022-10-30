@@ -5,6 +5,8 @@ import { MapContainer,TileLayer,Marker,Popup } from 'react-leaflet';
 
 import PUMPKIN from '../images/pumpkin.png';
 
+import 'swiped-events';
+
 const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "http://127.0.0.1:8000";
 
 function Postos() {
@@ -108,8 +110,8 @@ function Postos() {
 
 
         // swiped events
-        document.addEventListener('swiped-left', () => window.location.href = "/membros");
-        document.addEventListener('swiped-right', () => window.location.href = "/premios"); 
+        document.addEventListener('swiped-right', () => window.location.href = "/membros");
+        document.addEventListener('swiped-left', () => window.location.href = "/premios"); 
     }, []);
     
     

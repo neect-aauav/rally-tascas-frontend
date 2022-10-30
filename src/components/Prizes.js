@@ -2,6 +2,9 @@ import React, { useEffect,useState } from "react";
 import './Prizes.css';
 import './Table.css';
 import pumpkin from'../images/pumpkin.png';
+
+import 'swiped-events';
+
 const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "http://127.0.0.1:8000";
 
 function Prizes() {

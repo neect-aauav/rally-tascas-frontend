@@ -7,6 +7,8 @@ import POINTS from '../images/point.png';
 import RANKING from '../images/ranking.png';
 import PUMPKIN from '../images/pumpkin.png';
 
+import 'swiped-events';import 'swiped-events';
+
 const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "http://127.0.0.1:8000";
 
 function Membros() {
@@ -87,8 +89,8 @@ function Membros() {
         nav.querySelector(`a[href="${window.location.pathname}"]`)?.classList.add("selected-nav");
 
         // swiped events
-        document.addEventListener('swiped-left', () => window.location.href = "/");
-        document.addEventListener('swiped-right', () => window.location.href = "/postos"); 
+        document.addEventListener('swiped-right', () => window.location.href = "/");
+        document.addEventListener('swiped-left', () => window.location.href = "/postos"); 
     }, []);
 
     return (
