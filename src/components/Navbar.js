@@ -16,9 +16,9 @@ function Navbar() {
                 <Link to="/membros"><img src={MEMBERS} /><h1>Membros</h1></Link>
                 <Link to="/postos"><img src={BEER} /><h1 className="Bares-text">Postos</h1></Link>
                 <Link to='/premios'><img src={PRIZE} /><h1 className="Premios-text">Prémios</h1></Link>
-                <Link to='/login' className="logo">
+                <a href="/login" className="logo">
                     <img src={NEECT_2} alt="NEECT"/>
-                </Link>
+                </a>
             </div>
         </nav>
     );

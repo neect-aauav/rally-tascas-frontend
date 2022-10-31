@@ -112,7 +112,7 @@ function GeneralTable() {
         }
 
         updateGeneralTable();
-        setInterval(() => updateGeneralTable(), 1000);
+        setInterval(() => updateGeneralTable(), 5000);
 
         // pumpkin image
         const pumpkin = document.createElement('img');
