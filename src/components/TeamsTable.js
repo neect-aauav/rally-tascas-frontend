@@ -20,8 +20,8 @@ function TeamsTable() {
     }
 
     async function getBars() {
-        if  (localStorage.getItem("bars-data"))
-            return JSON.parse(localStorage.getItem("bars-data"));
+        // if  (localStorage.getItem("bars-data"))
+        //     return JSON.parse(localStorage.getItem("bars-data"));
 
         const response = await fetch(API_URL+"/api/bars");
         const data = await response.json();
@@ -42,21 +42,22 @@ function TeamsTable() {
     }
 
     useEffect(() => {
-        getNumberTeams().then(size => {
-            const tables = [], setupTables = [];
-            for (let n = 0; n < size; n++) {
-                setupTables.push(new Promise((resolve, reject) => {
-                    const home = document.querySelector("#teams-tables");
-                    
-                    // add link anchor bottom before table
-                    const anchor = document.createElement('div');
-                    anchor.class = "achor";
-                    home.appendChild(anchor);
+        const setupTables = [];
+        setupTables.push(new Promise((resolve, reject) => {
+            getNumberTeams().then(size => {
+                getBars().then(bars => {
+                    const tables = [];
+                    for (let n = 0; n < size; n++) {
+                        const home = document.querySelector("#teams-tables");
+                        
+                        // add link anchor bottom before table
+                        const anchor = document.createElement('div');
+                        anchor.class = "achor";
+                        home.appendChild(anchor);
 
-                    const table = createTable(home, "Loading...");
-                    tables.push(table);
-    
-                    getBars().then(bars => {
+                        const table = createTable(home, "Loading...");
+                        tables.push(table);
+        
                         fillTableHead(table, [RANKING, "Nome", ...bars.map(bar => String(bar.id)).sort((a, b) => a-b), POINTS]);
 
                         // loading
@@ -64,29 +65,29 @@ function TeamsTable() {
                         loading.classList.add('loading');
                         loading.innerHTML = "Loading...";
                         table.appendChild(loading);
-                        
-                        resolve(table);
-                    });
-                }));
-            }
-    
-            // wait for all tables to be created
-            Promise.all(setupTables).then(tables => {
-
-                const updateMembersRows = tables => {
-                    fetch(API_URL+"/api/scoreboard/members/all")
-                        .then(response => response.json())
-                        .then(teams => {
-                            // remove loading
-                            tables.forEach(table => table.querySelector(".loading")?.remove());
-    
-                            teams.forEach((team, i) => updateTable(tables[i], team));
-                        });
-                };
-
-                updateMembersRows(tables);
-                // setInterval(() => updateMembersRows(tables), 8000);
+                    }
+                    resolve(tables);
+                });
             });
+        }));
+        
+        // wait for all tables to be created
+        Promise.all(setupTables).then(tables => {
+            tables = tables.flat();
+
+            const updateMembersRows = tables => {
+                fetch(API_URL+"/api/scoreboard/members/all")
+                    .then(response => response.json())
+                    .then(teams => {
+                        // remove loading
+                        tables.forEach(table => table.querySelector(".loading")?.remove());
+
+                        teams.forEach((team, i) => updateTable(tables[i], team));
+                    });
+            };
+
+            updateMembersRows(tables);
+            // setInterval(() => updateMembersRows(tables), 8000);
         });
     });
 
