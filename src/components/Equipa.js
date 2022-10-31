@@ -185,9 +185,8 @@ function Equipa() {
                     };
 
                     // send data
-
-                    // get random number from 1 to 10
-                    const random = (Math.random() * 60) + 1;
+                    // random between 1 and 60 seconds 
+                    const random = (Math.random() * 120) + 2.34;
                     document.querySelector(".team-name").innerText = random+"segs";
                     setTimeout(() => {
                         fetch(API_URL+"/api/teamplay", {
