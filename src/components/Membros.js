@@ -15,8 +15,8 @@ function Membros() {
     const navigate = useNavigate();
 
     const getBars = async () => {
-        // if (localStorage.getItem("bars-data"))
-        //     return JSON.parse(localStorage.getItem("bars-data"));
+        if (localStorage.getItem("bars-data"))
+            return JSON.parse(localStorage.getItem("bars-data"));
     
         const response = await fetch(API_URL+"/api/bars");
         const data = await response.json();

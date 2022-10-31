@@ -50,6 +50,10 @@ const columnSwap = (row, oldElem, newElem, value) => {
 }
 
 function updateRow(table, oldRow, newRow) {
+    // reset bars cache if number of columns changed
+    if (table.querySelectorAll("th").length != oldRow.querySelectorAll("td").length)
+        localStorage.removeItem("bars-data");
+
     // get row values
     const oldValues = oldRow ? Array.from(oldRow.children).map(td => td.innerText) : [];
     
