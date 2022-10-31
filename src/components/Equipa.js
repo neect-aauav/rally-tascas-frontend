@@ -186,9 +186,9 @@ function Equipa() {
 
                     // send data
                     // random between 1 and 60 seconds 
-                    const random = (Math.random() * 120) + 2.34;
-                    document.querySelector(".team-name").innerText = random+"segs";
-                    setTimeout(() => {
+                    // const random = (Math.random() * 120) + 2.34;
+                    // document.querySelector(".team-name").innerText = random+"segs";
+                    // setTimeout(() => {
                         fetch(API_URL+"/api/teamplay", {
                             method: 'POST',
                             headers: {
@@ -225,7 +225,8 @@ function Equipa() {
                                 alert("Ocorreu um erro. Por favor tenta novamente.");
                             }
                         });
-                    }, random * 1000);
+                        
+                    // }, random * 1000);
                 }
         });
 
