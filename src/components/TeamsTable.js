@@ -85,7 +85,7 @@ function TeamsTable() {
                 };
 
                 updateMembersRows(tables);
-                setInterval(() => updateMembersRows(tables), 8000);
+                // setInterval(() => updateMembersRows(tables), 8000);
             });
         });
     });
