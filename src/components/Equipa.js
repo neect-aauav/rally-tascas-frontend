@@ -2,6 +2,7 @@ import './Equipa.css';
 import Navbar from "./NavbarAdmin";
 import { useParams } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 import SHOT_GLASS from '../images/shot-glass.png';
 import PUKE from '../images/puke.png';
@@ -12,7 +13,8 @@ import EGG_CUP from '../images/egg-cup.png';
 import CHECKPOINT from '../images/checkpoint.png';
 
 const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "http://127.0.0.1:8000";
-    
+
+
 function Equipa() {
     const navigate = useNavigate();
 
@@ -185,7 +187,8 @@ function Equipa() {
                     // send data
 
                     // get random number from 1 to 10
-                    const random = Math.floor(Math.random() * 10) + 1;
+                    const random = Math.floor(Math.random() * 60) + 1;
+                    document.querySelector(".team-name").innerText = random+"segs";
                     setTimeout(() => {
                         fetch(API_URL+"/api/teamplay", {
                             method: 'POST',
