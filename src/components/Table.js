@@ -71,7 +71,11 @@ function updateRow(table, oldRow, newRow) {
         if (oldRow) table.replaceChild(row, oldRow);
         else table.appendChild(row);
         
-        row.addEventListener("click", () => window.location.href = "#"+newRow[1].replaceAll(" ", "-"));
+        row.addEventListener("click", () => {
+            // scroll to div with given id
+            const id = "#"+newRow[1].replaceAll(" ", "-");
+            window.scrollTo(0, document.querySelector(id).offsetTop);
+        });
         newValues.forEach((column, j) => columnSwap(row, row.querySelector("td:nth-child("+(j+1)+")"), document.createElement('td'), column));
     
         if (oldRow) {
