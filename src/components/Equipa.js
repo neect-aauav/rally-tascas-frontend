@@ -183,42 +183,47 @@ function Equipa() {
                     };
 
                     // send data
-                    fetch(API_URL+"/api/teamplay", {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': 'Token ' + localStorage.getItem('token')
-                        },
-                        body: JSON.stringify(body)
-                    }).then((response) => {
-                        if (response.status === 200) {
-                            // send special game if checked
-                            if (document.querySelector('#special-game-checkbox') && document.querySelector('#special-game-checkbox').checked) {
-                                fetch(API_URL+"/api/teams/"+id, {
-                                    method: 'PATCH',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                        'Authorization': 'Token ' + localStorage.getItem('token')
-                                    },
-                                    body: JSON.stringify({
-                                        "won_special_game": true
-                                    })
-                                }).then((response) => {
-                                    if (response.status === 200) {
-                                        navigate("/admin/qrcode");
-                                    }
-                                    else {
-                                        alert("Ocorreu um erro ao enviar o jogo especial!");
-                                    }
-                                });
-                            }
 
-                            navigate("/admin/qrcode");
-                        }
-                        else {
-                            alert("Ocorreu um erro. Por favor tenta novamente.");
-                        }
-                    });
+                    // get random number from 1 to 10
+                    const random = Math.floor(Math.random() * 10) + 1;
+                    setTimeout(() => {
+                        fetch(API_URL+"/api/teamplay", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': 'Token ' + localStorage.getItem('token')
+                            },
+                            body: JSON.stringify(body)
+                        }).then((response) => {
+                            if (response.status === 200) {
+                                // send special game if checked
+                                if (document.querySelector('#special-game-checkbox') && document.querySelector('#special-game-checkbox').checked) {
+                                    fetch(API_URL+"/api/teams/"+id, {
+                                        method: 'PATCH',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'Authorization': 'Token ' + localStorage.getItem('token')
+                                        },
+                                        body: JSON.stringify({
+                                            "won_special_game": true
+                                        })
+                                    }).then((response) => {
+                                        if (response.status === 200) {
+                                            navigate("/admin/qrcode");
+                                        }
+                                        else {
+                                            alert("Ocorreu um erro ao enviar o jogo especial!");
+                                        }
+                                    });
+                                }
+
+                                navigate("/admin/qrcode");
+                            }
+                            else {
+                                alert("Ocorreu um erro. Por favor tenta novamente.");
+                            }
+                        });
+                    }, random * 1000);
                 }
         });
 
