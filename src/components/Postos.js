@@ -76,7 +76,7 @@ function Postos() {
             barsWrapper.appendChild(barsTable);
 
             // set headers
-            const headers = ["ID", "Nome", "Endereço", "Jogo"];
+            const headers = ["ID", "Nome", "Endereço", "Jogo", "Pontos", "Bebidas"];
             const headersRow = document.createElement("tr");
             barsTable.appendChild(headersRow);
             headers.forEach(header => {
@@ -87,7 +87,7 @@ function Postos() {
 
             bars.sort((a,b) => a.id - b.id)
                 .forEach(bar => {
-                    const rowContent = [bar.id, bar.name, bar.address, bar.game.name];
+                    const rowContent = [bar.id, bar.name, bar.address, bar.game.name, bar.points, bar.drinks];
                     const row = document.createElement("tr");
                     barsTable.appendChild(row);
                     rowContent.forEach(content => {

@@ -73,7 +73,10 @@ function updateRow(table, oldRow, newRow) {
         
         row.addEventListener("click", () => {
             // scroll to div with given id
-            const id = "#"+newRow[1].replaceAll(" ", "-");
+            let teamName = newRow[1];
+            if (!isNaN(teamName.charAt(0)))
+                teamName = "a"+teamName;
+            const id = "#"+teamName.replaceAll(" ", "-");
             window.scrollTo(0, document.querySelector(id).offsetTop);
         });
         newValues.forEach((column, j) => columnSwap(row, row.querySelector("td:nth-child("+(j+1)+")"), document.createElement('td'), column));

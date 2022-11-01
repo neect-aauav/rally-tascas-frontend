@@ -31,7 +31,11 @@ function TeamsTable() {
 
     function updateTable(table, team) {
         // update anchor
-        table.parentElement.previousSibling.id = team.team.replaceAll(" ", "-");
+        let teamName = team.team;
+        if (!isNaN(teamName.charAt(0)))
+            teamName = "a"+teamName;
+
+        table.parentElement.previousSibling.id = teamName.replaceAll(" ", "-");
         
         // update table name
         table.parentElement.querySelector(".equipa").innerHTML = team.team;
