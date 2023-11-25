@@ -2,6 +2,11 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Run the application locally
+```
+REACT_APP_API_URL=https://rally-tascas-api.herokuapp.com npm start dev
+```
+
 ## Available Scripts
 
 In the project directory, you can run:

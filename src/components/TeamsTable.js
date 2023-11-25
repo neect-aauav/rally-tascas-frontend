@@ -4,15 +4,17 @@ import { createTable, fillTableHead, updateRow } from './Table.js';
 
 import POINTS from '../images/point.png';
 import RANKING from '../images/ranking.png';
+import { tab } from '@testing-library/user-event/dist/tab.js';
 
 const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "http://127.0.0.1:8000";
 
 function TeamsTable() {
-    
     async function getNumberTeams() {
         if (localStorage.getItem("teams-size"))
             return JSON.parse(localStorage.getItem("teams-size"));
 
+
+        console.log(API_URL);
         const response = await fetch(API_URL+"/api/teams");
         const data = await response.json();
         localStorage.setItem("teams-size", JSON.stringify(data.length));
@@ -35,6 +37,7 @@ function TeamsTable() {
         if (!isNaN(teamName.charAt(0)))
             teamName = "a"+teamName;
 
+        console.log(table);
         table.parentElement.previousSibling.id = teamName.replaceAll(" ", "-");
         
         // update table name
@@ -86,6 +89,7 @@ function TeamsTable() {
                         // remove loading
                         tables.forEach(table => table.querySelector(".loading")?.remove());
 
+                        console.log(teams);
                         teams.forEach((team, i) => updateTable(tables[i], team));
                     });
             };
