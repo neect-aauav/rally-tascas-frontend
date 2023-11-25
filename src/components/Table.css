@@ -26,7 +26,8 @@
 }
 
 .table tr:nth-child(2) {
-    background-color: #f5624d;
+    color: white;
+    background-color: #c23638;
     position: relative;
 }
 
@@ -131,7 +132,7 @@ table th {
 }
 
 .updated-row {
-    color: #f5624d;
+    color: #c23638;
     font-weight: bold;
 }
 
