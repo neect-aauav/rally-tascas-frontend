@@ -5,7 +5,7 @@ import { createTable, fillTableHead, updateRow } from './Table.js';
 
 import POINTS from '../images/point.png';
 import RANKING from '../images/ranking.png';
-import PUMPKIN from '../images/pumpkin.png';
+import THEME_LOGO from '../images/theme_logo.png';
 import { useNavigate } from "react-router-dom";
 
 
@@ -67,11 +67,11 @@ function Membros() {
         updateMembersTable();
         setInterval(() => updateMembersTable(), 1000);
 
-        // pumpkin image
-        const pumpkin = document.createElement('img');
-        pumpkin.src = PUMPKIN;
-        pumpkin.classList.add('pumpkin');
-        document.querySelector(".equipa").appendChild(pumpkin);
+        // theme_logo image
+        const theme_logo = document.createElement('img');
+        theme_logo.src = THEME_LOGO;
+        theme_logo.classList.add('theme_logo');
+        document.querySelector(".equipa").appendChild(theme_logo);
 
         document.addEventListener("click", e => {
             const target = e.target;

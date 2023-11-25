@@ -9,7 +9,7 @@ import EGG from '../images/egg-black.png';
 import DRINKS from '../images/shot-glass-black.png';
 import PUKE from '../images/puking.png';
 import MEMBERS from '../images/members.png';
-import PUMPKIN from '../images/pumpkin.png';
+import THEME_LOGO from '../images/theme_logo.png';
 
 import NAME from '../images/name.png';
 import COSTUME from '../images/costume.png';
@@ -114,11 +114,11 @@ function GeneralTable() {
         updateGeneralTable();
         // setInterval(() => updateGeneralTable(), 5000);
 
-        // pumpkin image
-        const pumpkin = document.createElement('img');
-        pumpkin.src = PUMPKIN;
-        pumpkin.classList.add('pumpkin');
-        document.querySelector(".equipa").appendChild(pumpkin);
+        // theme_logo image
+        const theme_logo = document.createElement('img');
+        theme_logo.src = THEME_LOGO;
+        theme_logo.classList.add('theme_logo');
+        document.querySelector(".equipa").appendChild(theme_logo);
     });
 
     return (

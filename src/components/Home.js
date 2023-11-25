@@ -25,7 +25,7 @@ function Home() {
 
     return (
         <div className="Home">
-            <div className="home-title">TRICK OR DRINK</div>
+            <div className="home-title">MERRY TASCAS</div>
             <Navbar />
             <div className="home-container">
                 <GeneralTable />

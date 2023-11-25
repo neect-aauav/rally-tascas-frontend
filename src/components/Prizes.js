@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from "react";
 import './Prizes.css';
 import './Table.css';
-import pumpkin from'../images/pumpkin.png';
+import theme_logo from'../images/theme_logo.png';
 
 import 'swiped-events';
 
@@ -39,7 +39,7 @@ function Prizes() {
     <div className="tabelaequipa">
       <div id="bars" className="table bars-list">
           <div className="equipas">
-            <img src={pumpkin} className="pumpkin"/>
+            <img src={theme_logo} className="theme_logo"/>
              Lista de prémios
           </div>
             {/* create table */}

@@ -43,8 +43,8 @@
   width: 120vw;
 }
 body{
-/* import link ./images/halloween-bk.jpeg */
-  background-image: url("./images/halloween-bk.jpeg");
+/* import link ./images/theme-bk.jpeg */
+  background-image: url("./images/theme-bk.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

@@ -3,7 +3,7 @@ import './Postos.css';
 import Navbar from "./Navbar";
 import { MapContainer,TileLayer,Marker,Popup } from 'react-leaflet';
 
-import PUMPKIN from '../images/pumpkin.png';
+import THEME_LOGO from '../images/theme_logo.png';
 
 import 'swiped-events';
 
@@ -98,11 +98,11 @@ function Postos() {
                 });
         });
        
-        // pumpkin image
-        const pumpkin = document.createElement('img');
-        pumpkin.src = PUMPKIN;
-        pumpkin.classList.add('pumpkin');
-        document.querySelector(".equipas").appendChild(pumpkin);
+        // theme_logo image
+        const theme_logo = document.createElement('img');
+        theme_logo.src = THEME_LOGO;
+        theme_logo.classList.add('theme_logo');
+        document.querySelector(".equipas").appendChild(theme_logo);
 
         // select navbar tab
         const nav = document.querySelector(".Navbar");
