@@ -1,4 +1,4 @@
-import React,{render, useEffect, useState} from "react";
+import React,{ useEffect, useState} from "react";
 import './Postos.css';
 import Navbar from "./Navbar";
 import { MapContainer,TileLayer,Marker,Popup } from 'react-leaflet';
@@ -114,7 +114,7 @@ function Postos() {
     return (
         <div className="Postos">
             <Navbar />
-            <h1 className="textp-cabecalho">Descobre por onde tens de passar!</h1>
+            <div className="textp-cabecalho">Descobre por onde tens de passar!</div>
             <div className="bars-container">
                 <div className="basemapa">
                     {/* create a map container that contains lat value of postolat0 and long value of postolng0 */}

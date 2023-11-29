@@ -99,30 +99,39 @@ table th {
 }
 
 .table-key-item {
+    color: black;
+    background-color: white;
+    padding: 10px 20px;
+    border: 4px solid gold;
+    border-radius: 40px;
     display: flex;
     align-items: center;
     column-gap: 20px;
-    background-color: #D45F15;
-    padding: 10px 20px;
-    border: 4px solid white;
-    border-radius: 40px;
 }
 
 .prize-item {
+    color: white;
     background-color: #BB2528;
 }
 
 .special-game-item {
+    color: white;
     background-color: #00873E;
 }
 
 .table-key-item > img {
     width: 25px;
+}
+
+.special-game-item > img {
+    filter: invert(1);
+}
+
+.prize-item> img {
     filter: invert(1);
 }
 
 .table-key-item > div {
-    color: white;
     font-weight: bold;
     font-size: 20px !important;
 }
