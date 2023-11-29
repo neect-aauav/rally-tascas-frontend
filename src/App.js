@@ -1,7 +1,7 @@
-import React,{useState,useEffect} from "react";
+import React,{ useEffect } from "react";
 import './App.css';
 import Home from './components/Home';
-import {BrowserRouter as Router, Routes,Route} from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Postos from './components/Postos';
 import Premios from './components/Premios';
 import Login from './components/Login';
@@ -10,6 +10,7 @@ import Equipas from './components/Equipas';
 import Equipa from './components/Equipa';
 import Membros from './components/Membros';
 import QRCode from './components/QRCode.js';
+import Snowfall from "./components/Snowfall";
 import { useNavigate } from "react-router-dom";
 
 import ARROW from './images/arrow.png';
@@ -17,7 +18,7 @@ import ARROW from './images/arrow.png';
 import 'swiped-events';
 
 // force https
-if (window.location.protocol != "https:" && window.location.hostname != "localhost")
+if (window.location.protocol !== "https:" && window.location.hostname !== "localhost")
   window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
 
 function App() {
@@ -62,26 +63,27 @@ function App() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="App">
-        <Routes>
-          <Route  path="/" element={<Home/>} />
-          <Route  path="/login" element={<Login/>} />
-          <Route  path="/postos" element={<Postos/>} />
-          <Route  path="/premios" element={<Premios/>} />
-          <Route  path="/membros" element={<Membros/>} />
-          <Route  path="/admin/qrcode" element={<QRCode/>} />
-          <Route  path="/admin/bares" element={<Bares/>} />
-          <Route  path="/admin/equipas" element={<Equipas/>} />
-          <Route  path="/admin/equipas/:id" element={<Equipa/>} />
-        </Routes>
+      {!window.location.pathname.includes('/admin') && <Snowfall />}
+      <Routes>
+        <Route  path="/" element={<Home/>} />
+        <Route  path="/login" element={<Login/>} />
+        <Route  path="/postos" element={<Postos/>} />
+        <Route  path="/premios" element={<Premios/>} />
+        <Route  path="/membros" element={<Membros/>} />
+        <Route  path="/admin/qrcode" element={<QRCode/>} />
+        <Route  path="/admin/bares" element={<Bares/>} />
+        <Route  path="/admin/equipas" element={<Equipas/>} />
+        <Route  path="/admin/equipas/:id" element={<Equipa/>} />
+      </Routes>
 
-       {/* go up button */}
-       <div style={{display: "none"}} className="go-up" onClick={() => window.scrollTo(0, 0)}>
-          <div className="go-up-arrow"><img src={ARROW}></img></div>
-        </div>
+      {/* go up button */}
+      <div style={{display: "none"}} className="go-up" onClick={() => window.scrollTo(0, 0)}>
+        <div className="go-up-arrow"><img src={ARROW} alt="arrow"></img></div>
+      </div>
     </div>
   );
 }
