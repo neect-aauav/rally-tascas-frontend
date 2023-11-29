@@ -5,6 +5,7 @@ import {ToastContainer,toast,Zoom,Bounce} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {checkLogin} from './checksession';
 import { useNavigate } from "react-router-dom";
+import NEECT_2 from "../images/NEECT.png";
 
 const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "http://127.0.0.1:8000";
 
@@ -96,8 +97,19 @@ function Login() {
                     <input type="password" id="password" name="password" placeholder="Password" className="password"/>
                     <button className="login-button" onClick={getPostos}>Login</button>
                 </div>
-            </div>
+                <div className="logo-container">
+                    <div>
+                        <img src={NEECT_2} alt="NEECT" />
+                    </div>
+                    <div>
+                        <img src={NEECT_2} alt="NEECT" />
+                    </div>
+                    <div>
+                        <img src={NEECT_2} alt="NEECT" />
+                    </div>
+                </div>
         </div>
+    </div>
     );  
 }
 

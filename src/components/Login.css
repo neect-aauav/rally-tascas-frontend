@@ -9,6 +9,18 @@
   margin: auto;
 }
 
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+img {
+  width: 100px;
+}
+
 .login > h1 {
   font-size: 45px;
   color: azure;
