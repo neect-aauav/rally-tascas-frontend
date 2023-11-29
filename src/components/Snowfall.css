@@ -4,7 +4,7 @@
 }
 
 .snowflake {
-    color: rgb(152, 152, 152);
+    color: #88b3d2;
     position: fixed;
     top: -10%;
     z-index: 9999;
