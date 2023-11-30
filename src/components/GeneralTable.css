@@ -1,10 +1,11 @@
 #general-table tr:not(:first-child):hover {
-    background-color: #bbbbbb;
+    background-color: #d5d5d5;
     cursor: pointer;
+    color: black;
 }
 
 /* #general-table tr {
-    background-color: #b0b0b0;
+    background-color: #b0b0b0;  
 } */
 
 .special-game {

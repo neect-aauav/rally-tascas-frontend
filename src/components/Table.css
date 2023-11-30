@@ -26,8 +26,8 @@
 }
 
 .table tr:nth-child(2) {
-    color: white;
-    background-color: #c23638;
+    color: black;
+    background-color: #e15c5c;
     position: relative;
 }
 
