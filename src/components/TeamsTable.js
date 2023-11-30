@@ -4,7 +4,6 @@ import { createTable, fillTableHead, updateRow } from './Table.js';
 
 import POINTS from '../images/point.png';
 import RANKING from '../images/ranking.png';
-import { tab } from '@testing-library/user-event/dist/tab.js';
 
 const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "http://127.0.0.1:8000";
 

@@ -1,6 +1,5 @@
 import React from "react";
 import './Navbar.css';
-import NEECT_2 from '../images/NEECT.png';
 import {Link, useNavigate} from 'react-router-dom';
 
 import TROPHY from '../images/trophy.png';
@@ -30,11 +29,11 @@ function NavbarAdmin() {
     return (
         <nav>
             <div className="Navbar">
-                <Link to="/"><img src={TROPHY} /><h1 className="home-text">Score</h1></Link>
-                <Link to="/admin/bares"><img src={BEER} /><h1 className="home-text">Bares</h1></Link>
-                <Link to="/admin/qrcode"><img src={SCANNER} /><h1 className="home-text">Scanner</h1></Link>
-                <Link to="/admin/equipas"><img src={TEAMS} /><h1>Equipas</h1></Link>
-                <Link onClick={logout} to="#"><img src={LOGOUT} /><h1 className="Bares-text">Sair</h1></Link>
+                <Link to="/"><img src={TROPHY} alt="home"/><h1 className="home-text">Score</h1></Link>
+                <Link to="/admin/bares"><img src={BEER} alt="bars"/><h1 className="home-text">Bares</h1></Link>
+                <Link to="/admin/qrcode"><img src={SCANNER} alt="qrcode"/><h1 className="home-text">Scanner</h1></Link>
+                <Link to="/admin/equipas"><img src={TEAMS} alt="teams"/><h1>Equipas</h1></Link>
+                <Link onClick={logout} to="#"><img src={LOGOUT} alt="logout"/><h1 className="Bares-text">Sair</h1></Link>
             </div>
         </nav>
     );

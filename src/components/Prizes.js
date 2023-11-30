@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useState } from "react";
 import './Prizes.css';
 import './Table.css';
 import theme_logo from'../images/theme_logo.png';
@@ -39,7 +39,7 @@ function Prizes() {
     <div className="tabelaequipa">
       <div id="bars" className="table bars-list">
           <div className="equipas">
-            <img src={theme_logo} className="theme_logo"/>
+            <img src={theme_logo} className="theme_logo" alt="theme_logo"/>
              Lista de prémios
           </div>
             {/* create table */}

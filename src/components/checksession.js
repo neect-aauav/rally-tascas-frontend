@@ -15,7 +15,7 @@ const checkSession = (navigate, apiUrl, notApplicablePaths) => {
           })
           .then(res => res.json())
           .then(data => {
-              if (!(data.status && data.status == 200)) {
+              if (!(data.status && data.status === 200)) {
                   localStorage.removeItem('token');
                   navigate('/login');
               }
@@ -50,7 +50,7 @@ const checkLogin = (navigate, apiUrl) => {
         })
         .then(res => res.json())
         .then(data => {            
-            if (data.status && data.status == 200) {
+            if (data.status && data.status === 200) {
                 if (localStorage.getItem('bar')) {
                     navigate('/admin/equipas');
                 } else {

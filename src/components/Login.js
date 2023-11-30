@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import './Login.css';
 import Navbar from "./NavbarAdmin";
-import {ToastContainer,toast,Zoom,Bounce} from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {checkLogin} from './checksession';
 import { useNavigate } from "react-router-dom";

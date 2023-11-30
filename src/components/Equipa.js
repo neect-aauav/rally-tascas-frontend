@@ -2,7 +2,6 @@ import './Equipa.css';
 import Navbar from "./NavbarAdmin";
 import { useParams } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 
 import SHOT_GLASS from '../images/shot-glass.png';
 import PUKE from '../images/puke.png';
@@ -31,7 +30,7 @@ function Equipa() {
 
             getTeam(id).then((data) => {
                 console.log(data);
-                const visited = data.bars.find(bar => bar.id == localStorage.getItem('bar'))?.visited;
+                const visited = data.bars.find(bar => bar.id === localStorage.getItem('bar'))?.visited;
                 if (visited) {
                     // create warning top message
                     const warning = document.createElement('div');
@@ -304,7 +303,7 @@ function Equipa() {
             <div className="team-container">
                 <div className="wrapper" id="equipa">
                     <div className="wrapper" id="total-points">
-                        <img src={CHECKPOINT}></img>
+                        <img src={CHECKPOINT} alt='checkpoint'></img>
                         <div className="team-name"></div>
                         <div className="points">
                             <div className="points-value"></div>
@@ -312,21 +311,21 @@ function Equipa() {
                         </div>
                     </div>
                     <div className="section egg">
-                        <div className="section-title"><img src={EGG}></img>Ovo</div>
+                        <div className="section-title"><img src={EGG} alt='egg'></img>Ovo</div>
                         
                     </div>
-                    <div className="section-title"><img src={MEMBERS}></img>Membros</div>
+                    <div className="section-title"><img src={MEMBERS} alt='members'></img>Membros</div>
                     <div className="section members">
                         
                         <div className="members-list"></div>
                     </div>
                     <div className="section game">
-                        <div className="section-title"><img src={GAME}></img>Jogo<input id="game-checkbox" type="checkbox"></input></div>
+                        <div className="section-title"><img src={GAME} alt='game'></img>Jogo<input id="game-checkbox" type="checkbox"></input></div>
                     </div>
                     
                     {/* game of ESSUA */}
                     <div id="special-game" className="section game">
-                        <div className="section-title"><img src={EGG_CUP}></img>Bebeu o Ovo<input id="special-game-checkbox" type="checkbox"></input></div>
+                        <div className="section-title"><img src={EGG_CUP} alt='egg_cup'></img>Bebeu o Ovo<input id="special-game-checkbox" type="checkbox"></input></div>
                     </div>
 
                     <div className="button" id="send">Send</div>
