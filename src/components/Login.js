@@ -5,7 +5,10 @@ import {ToastContainer,toast,Zoom,Bounce} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {checkLogin} from './checksession';
 import { useNavigate } from "react-router-dom";
-import NEECT_2 from "../images/NEECT.png";
+import NEECT from "../images/NEECT.png";
+import NEEET from "../images/NEEET.png";
+import NEEQu from "../images/NEEQu.png";
+import NRock from "../images/NRock.png";
 
 const API_URL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : "http://127.0.0.1:8000";
 
@@ -98,14 +101,21 @@ function Login() {
                     <button className="login-button" onClick={getPostos}>Login</button>
                 </div>
                 <div className="logo-container">
-                    <div>
-                        <img src={NEECT_2} alt="NEECT" />
+                    <div className="logo-row">
+                        <div>
+                            <img src={NEECT} alt="NEECT" />
+                        </div>
+                        <div>
+                            <img src={NRock} alt="NRock" />
+                        </div>
                     </div>
-                    <div>
-                        <img src={NEECT_2} alt="NEECT" />
-                    </div>
-                    <div>
-                        <img src={NEECT_2} alt="NEECT" />
+                    <div className="logo-row">
+                        <div>
+                            <img src={NEEET} alt="NEEET" />
+                        </div>
+                        <div>
+                            <img src={NEEQu} alt="NEEQu" />
+                        </div>
                     </div>
                 </div>
         </div>

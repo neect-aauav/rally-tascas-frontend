@@ -11,14 +11,21 @@
 
 .logo-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 30px;
   margin-bottom: 20px;
 }
 
+.logo-row {
+  display: flex;
+  justify-content: center;
+}
+
+
 img {
-  width: 100px;
+  width: 160px;
 }
 
 .login > h1 {
