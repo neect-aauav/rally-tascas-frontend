@@ -185,7 +185,7 @@ input[type="checkbox"]:checked::after {
     width: 11px;
     height: 11px;
     border-radius: 2px;
-    background-color: #5c5c5c;
+    /* background-color: #5c5c5c; */
     color: white;
     line-height: 1;
     font-size: 12px;
