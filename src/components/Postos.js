@@ -35,7 +35,7 @@ function Postos() {
     const [postoname5,setname5] = useState(0);
     const [postoname6,setname6] = useState(0);
     const [postoname7,setname7] = useState(0);
-
+    const [games, setGames] = useState([]);
     
     async function getPostos() {
         const response = await fetch(API_URL+"/api/bars");
@@ -66,6 +66,12 @@ function Postos() {
         setname5(data[5].name);
         setname6(data[6].name);
         setname7(data[7].name);
+        const gameData = data.map((bar) => ({
+          id: bar.game.id,
+          name: bar.game.name,
+          description: bar.game.description,
+        }));
+        setGames(gameData);
         return data;
     }
     useEffect(() => {
@@ -145,7 +151,7 @@ function Postos() {
                     </Marker>
                     <Marker position={[postolat4, postolng4]}>
                         <Popup>
-                        {postoname4} <br /> MacDonalds
+                        {postoname4} <br /> McDonald's
                         </Popup>
                     </Marker>
                     <Marker position={[postolat5,postolng5]}>
@@ -168,6 +174,26 @@ function Postos() {
 
                 <div id="bars" className="table bars-list">
                     <div className="equipas">Bares</div>
+                </div>
+
+                <div id="games" className="table bars-list">
+                    <div className="equipas">Jogos</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {games.map(game => (
+                                <tr key={game.id}>
+                                    <td>{game.name}</td>
+                                    <td>{game.description}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
