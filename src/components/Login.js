@@ -105,9 +105,9 @@ function Login() {
                         <div>
                             <img src={NEECT} alt="NEECT" />
                         </div>
-                        <div>
+                        {/* <div>
                             <img src={NRock} alt="NRock" />
-                        </div>
+                        </div> */}
                     </div>
                     <div className="logo-row">
                         <div>
